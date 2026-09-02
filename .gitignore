@@ -1,0 +1,6 @@
+build/
+.vs/
+.vscode/
+CMakeSettings.json
+ROADMAP.md
+Data/Logs/

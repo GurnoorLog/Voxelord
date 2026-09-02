@@ -1,0 +1,78 @@
+#pragma once
+
+#include <Maths/GlmCommon.h>
+
+#include <cmath>
+
+class Converter
+{
+public:
+	Converter() = delete;
+
+	static ivec3 chunkToGlobal(ivec2 pos);
+	static ivec2 globalToChunk(ivec3 pos);
+	static ivec3 globalToInnerChunk(ivec3 pos);
+	static vec3 globalToInnerChunk(vec3 pos);
+	static ivec2 globalToInnerChunk2D(ivec3 pos);
+	static vec2 globalToInnerChunk2D(vec3 pos);
+	static ivec3 sectionToGlobal(ivec3 pos);
+	static ivec3 globalToSection(ivec3 pos);
+	static ivec3 globalToInnerSection(ivec3 pos);
+	static vec3 globalToInnerSection(vec3 pos);
+	static ivec3 globalPosToBlock(vec3 pos);
+	static ivec2 to2D(ivec3 pos);
+	static ivec3 to3D(ivec2 pos);
+};
+
+inline int floorDiv(int base, int divider) {
+	return (base >= 0 ? base : (base - divider + 1)) / divider;
+}
+
+inline int floorDiv(float base, float divider) {
+	return static_cast<int>(std::floor(base / divider));
+}
+
+inline ivec2 floorDiv(ivec2 base, ivec2 divider) {
+	return { floorDiv(base.x, divider.x), floorDiv(base.y, divider.y) };
+}
+
+inline ivec2 floorDiv(vec2 base, vec2 divider) {
+	return { floorDiv(base.x, divider.x), floorDiv(base.y, divider.y) };
+}
+
+inline ivec3 floorDiv(ivec3 base, ivec3 divider) {
+	return { floorDiv(base.x, divider.x), floorDiv(base.y, divider.y), floorDiv(base.z, divider.z) };
+}
+
+inline ivec3 floorDiv(vec3 base, vec3 divider) {
+	return { floorDiv(base.x, divider.x), floorDiv(base.y, divider.y), floorDiv(base.z, divider.z) };
+}
+
+inline int posMod(int base, int modulo) {
+	return ((base % modulo) + modulo) % modulo;
+}
+
+inline float posMod(float base, float modulo) {
+	return std::fmod(std::fmod(base, modulo) + modulo, modulo);
+}
+
+inline ivec2 posMod(ivec2 base, ivec2 modulo) {
+	return { posMod(base.x, modulo.x), posMod(base.y, modulo.y) };
+}
+
+inline vec2 posMod(vec2 base, vec2 modulo) {
+	return { posMod(base.x, modulo.x), posMod(base.y, modulo.y) };
+}
+
+inline ivec3 posMod(ivec3 base, ivec3 modulo) {
+	return { posMod(base.x, modulo.x), posMod(base.y, modulo.y), posMod(base.z, modulo.z) };
+}
+
+inline vec3 posMod(vec3 base, vec3 modulo) {
+	return { posMod(base.x, modulo.x), posMod(base.y, modulo.y), posMod(base.z, modulo.z) };
+}
+
+template<typename T>
+const T& clamp(const T& x, const T& lower, const T& upper) {
+	return std::max(lower, std::min(x, upper));
+}

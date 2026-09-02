@@ -1,0 +1,8 @@
+{
+	"opaque" : false,
+	"obstacle" : false,
+	"category" : "plant",
+	"textures" : {
+		"all" : "blue_flower"
+	}
+}
