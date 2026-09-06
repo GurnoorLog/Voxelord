@@ -15,6 +15,10 @@ public:
 		p_window->setMouseCursorVisible(!enabled);
 		update();
 	}
+	void disable() {
+		if (enabled)
+			toggle();
+	}
 	void update() {
 		if (enabled) {
 			sf::Mouse::setPosition(sf::Vector2i{ p_window->getCenter().x, p_window->getCenter().y }, *p_window);

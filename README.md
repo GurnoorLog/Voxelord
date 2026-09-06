@@ -10,7 +10,7 @@ Terrain is generated from a seed. The same seed always gives the same world, and
 
 You carry a hotbar instead of an inventory. Scroll or hit the number row to switch what you're placing. Day and night run on a cycle, and glow blocks stay lit through the dark, which you'll want when you're underground.
 
-Physics don't clip. You walk, run, jump, swim, and sink in fluid, and there's a capsule collider underneath so you hop a one-block lip instead of snagging on every seam. Lava is lava. Don't step in it.
+Physics don't clip. You walk, run, jump, swim, fly, and sink in fluid, and there's a capsule collider underneath so you hop a one-block lip instead of snagging on every seam. Lava is lava. Don't step in it.
 
 It's also built for weak machines. Vsync is on, loading threads stay light, and `VIEW_DISTANCE` and `LOADING_WORKERS_COUNT` are build options if you want to push further. If it runs on a potato, so be it.
 
@@ -78,7 +78,7 @@ At configure time you can set `VIEW_DISTANCE` (how far chunks load, default 32 s
 
 ## Controls
 
-Mouse look. `WASD` moves, `Space` jumps, `Shift` sprints. Scroll or the number row picks the hotbar block. Left click breaks, right click places. `T` opens chat, `Tab` toggles it. `Esc` frees the mouse and heads to the menu.
+Mouse look. `WASD` moves, `Space` jumps, `Shift` sprints. Scroll or the number row picks the hotbar block. Left click breaks, right click places. `T` opens chat, `Tab` toggles it. `G` flips between flying and walking, and you start airborne. `Esc` frees the mouse and heads to the menu.
 
 ## Blurb
 

@@ -166,7 +166,13 @@ int main(int argc, char* argv[]) {
 					} else {
 						commands.onKeyPressed(event.key.code);
 						if (event.key.code == sf::Keyboard::Escape) {
-							captureMouse->toggle();
+							if (game->getSettingsPanel().isOpen()) {
+								// Come back to the game; the mouse goes back to the world.
+								game->getSettingsPanel().close();
+								captureMouse->toggle();
+							} else {
+								captureMouse->toggle();
+							}
 						} else if (event.key.code == sf::Keyboard::T) {
 							game->openChat();
 						}
@@ -200,32 +206,63 @@ int main(int argc, char* argv[]) {
 					game->processMouseWheel(deltaTime, event.mouseWheelScroll.delta);
 				}
 				break;
-			case sf::Event::MouseMoved:
-			case sf::Event::MouseButtonPressed:
-				if (state == AppState::MENU) {
-					MenuAction action = menu.handleEvent(event);
-					switch (action) {
-					case MenuAction::CREATE_WORLD:
-						createWorld();
-						break;
-					case MenuAction::JOIN:
-						joinWorld();
-						break;
-					case MenuAction::QUIT:
-						window.toClose();
-						break;
-					default:
-						break;
-					}
+case sf::Event::MouseMoved:
+			if (state == AppState::PLAYING) {
+				game->getSettingsPanel().hover({ static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y) });
+			} else if (state == AppState::MENU) {
+				MenuAction action = menu.handleEvent(event);
+				switch (action) {
+				case MenuAction::CREATE_WORLD:
+					createWorld();
+					break;
+				case MenuAction::JOIN:
+					joinWorld();
+					break;
+				case MenuAction::QUIT:
+					window.toClose();
+					break;
+				default:
+					break;
 				}
-				break;
+			}
+			break;
+		case sf::Event::MouseButtonPressed:
+			if (state == AppState::PLAYING) {
+				SettingsPanel& settings = game->getSettingsPanel();
+				sf::Vector2f mouse{ static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y) };
+				if (settings.isOpen()) {
+					// A click lands on a row, or outside the panel closes it.
+					settings.handleClick(mouse, *game);
+				} else if (settings.isOverButton(mouse)) {
+					// Free the mouse so the panel can be driven with it.
+					captureMouse->disable();
+					settings.open();
+				}
+			} else if (state == AppState::MENU) {
+				MenuAction action = menu.handleEvent(event);
+				switch (action) {
+				case MenuAction::CREATE_WORLD:
+					createWorld();
+					break;
+				case MenuAction::JOIN:
+					joinWorld();
+					break;
+				case MenuAction::QUIT:
+					window.toClose();
+					break;
+				default:
+					break;
+				}
+			}
+			break;
 			default:
 				break;
 			}
 		}
 
 		if (state == AppState::PLAYING) {
-			if (captureMouse->isEnabled() && !game->isChatOpen()) {
+			const bool settingsOpen = game->getSettingsPanel().isOpen();
+			if (captureMouse->isEnabled() && !game->isChatOpen() && !settingsOpen) {
 				commands.pollHeld();
 				game->processMouseMove(deltaTime);
 				game->processKeyboard(deltaTime, commands);
@@ -240,6 +277,7 @@ int main(int argc, char* argv[]) {
 			crosshair.draw();
 			textDrawer.drawAll(fpsCounter.get(), *game);
 			textDrawer.drawChat(*game);
+			game->getSettingsPanel().draw(*game);
 			window.popGLStates();
 
 			// Server disconnect (or a failed connection): back to the title screen.
