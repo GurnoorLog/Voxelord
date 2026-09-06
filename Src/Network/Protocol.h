@@ -10,8 +10,10 @@
 // not silent desync.
 
 namespace Protocol {
-	constexpr uint32_t PROTOCOL_VERSION = 1;
+	constexpr uint32_t PROTOCOL_VERSION = 2;
 	constexpr uint16_t DEFAULT_PORT = 25565;
+	// Port the embedded MCP server listens on (settings panel AI player).
+	constexpr uint16_t MCP_PORT = 8765;
 	// Cap so one bulk edit can't stall the tick.
 	constexpr uint16_t MAX_BULK_EDIT_RADIUS = 25;
 
@@ -43,7 +45,8 @@ namespace Protocol {
 		FLAG_RIGHT = 1 << 3,
 		FLAG_UP = 1 << 4,
 		FLAG_DOWN = 1 << 5,
-		FLAG_SPRINT = 1 << 6
+		FLAG_SPRINT = 1 << 6,
+		FLAG_FLYING = 1 << 7
 	};
 
 	// Client input sent every frame, consumed by the server's fixed tick.

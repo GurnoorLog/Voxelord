@@ -31,9 +31,9 @@ public:
 	vec3 getPosition() const;
 	vec3 getVelocity() const;
 	bool isOnGround() const;
-	void nextGameMode();
-	void setGameMode(GameMode gameMode);
-	GameMode getGameMode() const;
+	void toggleFlying();
+	void setFlying(bool flying);
+	bool isFlying() const;
 
 	Game& getGame();
 	const Game& getGame() const;
@@ -52,14 +52,14 @@ public:
 
 private:
 	static const vec3 INITIAL_POSITION;
-	static const float DEFAULT_TARGET_DISTANCE, CREATIVE_TARGET_DISTANCE;
+	static const float DEFAULT_TARGET_DISTANCE;
 	static const sf::Time REPEAT_DELAY;
 
 	bool tryRepeat(sf::Time& accumulator, sf::Time dt, bool active);
 	void refreshController();
 
 	Game* game;
-	GameMode m_gameMode = GameMode::SURVIVAL;
+	bool m_flying = true;
 	Camera m_camera;
 	ChunkWorldView m_chunkWorldView;
 	PlayerController m_controller;

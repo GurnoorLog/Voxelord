@@ -33,7 +33,8 @@ Game::Game(Window* const window)
 	m_defaultRenderer{ m_player.getCamera(), m_dayCycle },
 	m_waterRenderer{ p_window->size(), m_player.getCamera(), m_dayCycle },
 	m_lavaRenderer{ m_player.getCamera(), m_dayCycle },
-	m_postProcessingRenderer{ p_window->size(), m_dayCycle } {
+	m_postProcessingRenderer{ p_window->size(), m_dayCycle },
+	m_settingsPanel{ window } {
 
 	ResManager::initBlockDatas(std::vector<TextureArray*>{ &m_defaultRenderer.getTextureArray() });
 	m_skyRenderer.load();
@@ -106,6 +107,7 @@ void Game::processKeyboard(sf::Time dt, Commands& commands) {
 	if (commands.isActive(Command::RIGHT)) m_netMoveFlags |= Protocol::FLAG_RIGHT;
 	if (commands.isActive(Command::UP)) m_netMoveFlags |= Protocol::FLAG_UP;
 	if (commands.isActive(Command::DOWN)) m_netMoveFlags |= Protocol::FLAG_DOWN;
+	if (m_player.isFlying()) m_netMoveFlags |= Protocol::FLAG_FLYING;
 	m_netSprint = commands.isActive(Command::SPRINT);
 
 	if (commands.isActive(Command::FORWARD))
@@ -139,11 +141,11 @@ void Game::processKeyboard(sf::Time dt, Commands& commands) {
 			submitSphereEdit(100, m_player.getPickedBlock().value());
 	if (commands.isActive(Command::PLACE_BELOW))
 		m_player.placeBlockBelow();
-	// Local-only cheats, disabled while online.
+	// Teleport is a local cheat, kept offline-only.
 	if (!m_online && commands.isActive(Command::TELEPORT))
 		m_player.teleport();
-	if (!m_online && commands.isActive(Command::NEXT_GAMEMODE))
-		m_player.nextGameMode();
+	if (commands.isActive(Command::TOGGLE_FLY))
+		m_player.toggleFlying();
 	// Tab/Shift+Tab step once per press.
 	if (commands.isActive(Command::NEXT_BLOCK)) {
 		commands.onKeyReleased(sf::Keyboard::Tab);
@@ -597,6 +599,20 @@ void Game::stopMcp() {
 	m_mcpBotOnline = false;
 	m_mcpBotId = -1;
 	LOG(Level::INFO) << "MCP player control disabled" << std::endl;
+}
+
+void Game::toggleFlyFromSettings() {
+	m_player.setFlying(!m_player.isFlying());
+}
+
+void Game::toggleBotFromSettings() {
+	if (m_mcpActive) {
+		addChatLine("System", "AI player removed from the world");
+		stopMcp();
+	} else {
+		addChatLine("System", "Starting AI player on the local game...");
+		startMcp(Protocol::MCP_PORT);
+	}
 }
 
 void Game::connectMcpBot() {

@@ -54,12 +54,12 @@ float PlayerController::getPitch() const {
 	return m_pitch;
 }
 
-void PlayerController::setGameMode(GameMode gameMode) {
-	m_gameMode = gameMode;
+void PlayerController::setFlying(bool flying) {
+	m_flying = flying;
 }
 
-GameMode PlayerController::getGameMode() const {
-	return m_gameMode;
+bool PlayerController::getFlying() const {
+	return m_flying;
 }
 
 void PlayerController::setSprinting(bool sprinting) {
@@ -100,7 +100,7 @@ void PlayerController::move(Direction direction, float deltaTime) {
 		m_horizontalDir -= toHorizontal(right);
 		break;
 	case UP:
-		if (m_gameMode == GameMode::SURVIVAL) {
+		if (!m_flying) {
 			if (m_onTheGround) {
 				if (m_fluid != Fluid::NONE)
 					m_verticalSpeed = fluidPhysics(m_fluid).jumpSpeed;
@@ -121,7 +121,7 @@ void PlayerController::move(Direction direction, float deltaTime) {
 }
 
 void PlayerController::update(float deltaTime) {
-	if (m_gameMode == GameMode::SURVIVAL) {
+	if (!m_flying) {
 		if (m_fluid != Fluid::NONE) {
 			FluidPhysics phys = fluidPhysics(m_fluid);
 			m_verticalSpeed -= phys.gravity * deltaTime;
@@ -133,17 +133,17 @@ void PlayerController::update(float deltaTime) {
 }
 
 vec3 PlayerController::getVelocityAndReset() {
-	float horizontal_speed = m_gameMode == GameMode::SURVIVAL ? WALK_HORIZONTAL_SPEED : FLY_HORIZONTAL_SPEED;
-	float sprint_multiplier = m_gameMode == GameMode::SURVIVAL ? WALK_SPRINT_MULTIPLIER : FLY_SPRINT_MULTIPLIER;
+	float horizontal_speed = m_flying ? FLY_HORIZONTAL_SPEED : WALK_HORIZONTAL_SPEED;
+	float sprint_multiplier = m_flying ? FLY_SPRINT_MULTIPLIER : WALK_SPRINT_MULTIPLIER;
 	vec3 horizontal_move{};
 	if (m_horizontalDir != vec3())
 		horizontal_move = normalize(m_horizontalDir) * horizontal_speed;
 	if (m_sprinting)
 		horizontal_move *= sprint_multiplier;
-	if (m_gameMode == GameMode::SURVIVAL && m_fluid != Fluid::NONE)
+	if (!m_flying && m_fluid != Fluid::NONE)
 		horizontal_move *= fluidPhysics(m_fluid).horizontalMultiplier;
 	vec3 vertical_move;
-	if (m_gameMode == GameMode::SURVIVAL) {
+	if (!m_flying) {
 		vertical_move = WORLDUP * m_verticalSpeed;
 	} else {
 		m_verticalSpeed = 0;
@@ -159,10 +159,7 @@ vec3 PlayerController::getVelocityAndReset() {
 }
 
 vec3 PlayerController::getMoveAndReset(float deltaTime) {
-	if (m_gameMode == GameMode::SPECTATOR)
-		return getVelocityAndReset() * deltaTime;
-	else
-		return getMoveWithCollisionsAndReset(deltaTime);
+	return getMoveWithCollisionsAndReset(deltaTime);
 }
 
 Box PlayerController::makeHitbox() const {
@@ -187,15 +184,15 @@ vec3 PlayerController::getMoveWithCollisionsAndReset(float deltaTime) {
 	}
 	vec3 shift = repeatedSweptAABB(hitbox, velocity, bs, deltaTime);
 
-	if (m_gameMode == GameMode::SURVIVAL) {
+	if (!m_flying) {
 		// Compare against requested displacement, not |shift.y| ~ 0, which is more robust.
 		bool verticalBlocked = velocity.y != 0.f && std::abs(shift.y - velocity.y * deltaTime) > 1e-6f;
 		// Grounded only when blocked while moving down.
 		m_onTheGround = velocity.y < 0.f && verticalBlocked;
 		if (verticalBlocked)
 			m_verticalSpeed = 0.f;
-		m_fluid = currentFluid();
 	}
+	m_fluid = currentFluid();
 
 	// Push out of any block the player ends up embedded in.
 	shift += getUnstuckShift(deltaTime);

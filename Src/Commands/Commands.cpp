@@ -43,7 +43,7 @@ void Commands::onKeyReleased(sf::Keyboard::Key key) {
 	case Keyboard::B: deactivate(Command::BRUSH); deactivate(Command::HUGE_BRUSH); break;
 	case Keyboard::P: deactivate(Command::PLACE_BELOW); break;
 	case Keyboard::T: deactivate(Command::TELEPORT); break;
-	case Keyboard::G: deactivate(Command::NEXT_GAMEMODE); break;
+	case Keyboard::G: deactivate(Command::TOGGLE_FLY); break;
 	case Keyboard::Tab: deactivate(Command::NEXT_BLOCK); deactivate(Command::PREV_BLOCK); break;
 	default: break;
 	}
@@ -58,7 +58,7 @@ Command Commands::findKey(sf::Keyboard::Key key) {
 		return Keyboard::isKeyPressed(Keyboard::LAlt) ? Command::HUGE_BRUSH : Command::BRUSH;
 	case Keyboard::P: return Command::PLACE_BELOW;
 	case Keyboard::T: return Command::TELEPORT;
-	case Keyboard::G: return Command::NEXT_GAMEMODE;
+	case Keyboard::G: return Command::TOGGLE_FLY;
 	case Keyboard::Tab:
 		return Keyboard::isKeyPressed(Keyboard::LShift) ? Command::PREV_BLOCK : Command::NEXT_BLOCK;
 	default: return Command::UNKNOWN;

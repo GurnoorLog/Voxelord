@@ -237,8 +237,8 @@ void GameServer::handleBulkEdit(Client& client, int cx, int cy, int cz, uint16_t
 
 void GameServer::applyInput(PlayerEntity& player, float dt) {
 	const Protocol::PlayerInput& in = player.latestInput;
-	player.controller.setYawPitch(in.yaw, in.pitch);
-	player.controller.setGameMode(GameMode::SURVIVAL);
+player.controller.setYawPitch(in.yaw, in.pitch);
+	player.controller.setFlying(in.moveFlags & Protocol::FLAG_FLYING);
 	player.controller.setPosition(player.position);
 
 	if (in.moveFlags & Protocol::FLAG_FORWARD) player.controller.move(PlayerController::FORWARD, dt);

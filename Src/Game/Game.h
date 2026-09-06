@@ -21,6 +21,7 @@
 #include "View/BlockContourDrawer.h"
 #include "View/ExplosionDrawer.h"
 #include "View/RemotePlayerDrawer.h"
+#include "View/SettingsPanel.h"
 #include "Renderer/DefaultRenderer.h"
 #include "Renderer/WaterRenderer.h"
 #include "Renderer/LavaRenderer.h"
@@ -105,6 +106,12 @@ public:
 	bool handleBotCommand(const std::string& text);
 	bool isBotOnline() const { return m_mcpBotOnline; }
 	const std::string& getBotName() const { return m_mcpBotName; }
+
+	// Settings overlay (top-right corner gear).
+	SettingsPanel& getSettingsPanel() { return m_settingsPanel; }
+	const SettingsPanel& getSettingsPanel() const { return m_settingsPanel; }
+	void toggleFlyFromSettings();
+	void toggleBotFromSettings();
 
 private:
 	void clearRenderTarget();
@@ -233,4 +240,5 @@ private:
 	std::string m_chatBuffer;
 	bool m_chatOpen = false;
 	bool m_shouldReturnToMenu = false;
+	SettingsPanel m_settingsPanel;
 };

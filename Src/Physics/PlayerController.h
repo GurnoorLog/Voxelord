@@ -7,12 +7,7 @@
 #include <Block/Block.h>
 #include <Physics/IWorldView.h>
 
-enum class GameMode {
-	SURVIVAL,
-	CREATIVE,
-	SPECTATOR,
-	SIZE
-};
+
 
 // Shared physics capsule, used by both the client and the server so they move identically.
 class PlayerController {
@@ -49,8 +44,8 @@ public:
 	void setYawPitch(float yaw, float pitch);
 	float getYaw() const;
 	float getPitch() const;
-	void setGameMode(GameMode gameMode);
-	GameMode getGameMode() const;
+	void setFlying(bool flying);
+	bool getFlying() const;
 
 	void setSprinting(bool sprinting);
 	void move(Direction direction, float deltaTime);
@@ -85,7 +80,7 @@ private:
 	vec3 m_position{ 0.f, 80.f, 0.f };
 	float m_yaw{ -90.f };
 	float m_pitch{ 0.f };
-	GameMode m_gameMode = GameMode::SURVIVAL;
+	bool m_flying = true;
 
 	float m_verticalSpeed{ 0.f };
 	vec3 m_horizontalDir{};

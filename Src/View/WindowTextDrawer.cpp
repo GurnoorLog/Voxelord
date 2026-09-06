@@ -29,7 +29,6 @@ void WindowTextDrawer::drawAll(int fps, Game& game) {
 	drawRenderedChunks(game.getChunkMap().getRenderedChunks());
 	drawBlockChunks(game.getChunkMap().chunksAtLeastInState(Chunk::TO_LOAD_MESH));
 	drawFaceChunks(game.getChunkMap().chunksAtLeastInState(Chunk::TO_RENDER));
-	drawGameMode(game.getPlayer().getGameMode());
 	/*drawBlockNumber(game.getChunkMap().chunksAtLeastInState(Chunk::TO_LOAD_FACES) *
 		Const::CHUNK_SIDE * Const::CHUNK_SIDE * Const::CHUNK_HEIGHT);*/
 }
@@ -118,18 +117,6 @@ void WindowTextDrawer::drawFaceChunks(int faceChunks) {
 void WindowTextDrawer::drawBlockNumber(int blockNumber) {
 	std::ostringstream oss;
 	oss << "Blocks: " << std::setw(12) << blockNumber;
-	draw(oss.str());
-}
-
-void WindowTextDrawer::drawGameMode(GameMode gameMode) {
-	std::ostringstream oss;
-	oss << "GameMode: " << std::setw(12);
-	switch (gameMode) {
-	case GameMode::CREATIVE: oss << "Creative"; break;
-	case GameMode::SURVIVAL: oss << "Survival"; break;
-	case GameMode::SPECTATOR: oss << "Spectator"; break;
-	default: break;
-	}
 	draw(oss.str());
 }
 

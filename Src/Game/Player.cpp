@@ -7,8 +7,7 @@
 #include <World/ChunkWorldView.h>
 
 const vec3 Player::INITIAL_POSITION{ vec3{ 0.f, 80.f, 0.f } };
-const float Player::DEFAULT_TARGET_DISTANCE{ 6. };
-const float Player::CREATIVE_TARGET_DISTANCE{ static_cast<float>(ChunkMap::VIEW_DISTANCE * Const::SECTION_SIDE) };
+const float Player::DEFAULT_TARGET_DISTANCE{ static_cast<float>(ChunkMap::VIEW_DISTANCE * Const::SECTION_SIDE) };
 const sf::Time Player::REPEAT_DELAY{ sf::seconds(0.2f) };
 
 namespace {
@@ -23,7 +22,7 @@ namespace {
 }
 
 Player::Player(Game* game)
-	: game{ game }, m_camera{ INITIAL_POSITION }, m_controller{} {
+	: game{ game }, m_flying{ true }, m_camera{ INITIAL_POSITION }, m_controller{} {
 	pickedBlock = g_hotbar().front();
 }
 
@@ -32,7 +31,7 @@ void Player::refreshController() {
 	m_controller.setWorldView(&m_chunkWorldView);
 	m_controller.setPosition(m_camera.getPosition());
 	m_controller.setYawPitch(m_camera.getYaw(), m_camera.getPitch());
-	m_controller.setGameMode(m_gameMode);
+	m_controller.setFlying(m_flying);
 }
 
 void Player::processMouseClick(sf::Time dt, Commands& commands) {
@@ -86,7 +85,7 @@ void Player::update(sf::Time dt) {
 	LineBlockFinder lineBlockFinder{ m_camera.getPosition(), m_camera.getFront() };
 	placePos = std::nullopt;
 	targetPos = std::nullopt;
-	float targetDistance = m_gameMode == GameMode::CREATIVE ? CREATIVE_TARGET_DISTANCE : DEFAULT_TARGET_DISTANCE;
+	float targetDistance = DEFAULT_TARGET_DISTANCE;
 	while (lineBlockFinder.getDistance() <= targetDistance) {
 		ivec3 iterPos = lineBlockFinder.next();
 		Block block = game->getChunkMap().getBlock(iterPos);
@@ -147,17 +146,20 @@ bool Player::isOnGround() const {
 	return m_controller.isOnGround();
 }
 
-void Player::nextGameMode() {
-	int next_int = (static_cast<int>(m_gameMode) + 1) % static_cast<int>(GameMode::SIZE);
-	m_gameMode = static_cast<GameMode>(next_int);
+void Player::toggleFlying() {
+	m_flying = !m_flying;
+	m_controller.setFlying(m_flying);
 }
 
-void Player::setGameMode(GameMode gameMode) {
-	m_gameMode = gameMode;
+void Player::setFlying(bool flying) {
+	if (m_flying == flying)
+		return;
+	m_flying = flying;
+	m_controller.setFlying(m_flying);
 }
 
-GameMode Player::getGameMode() const {
-	return m_gameMode;
+bool Player::isFlying() const {
+	return m_flying;
 }
 
 Game& Player::getGame() {
