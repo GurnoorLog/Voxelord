@@ -1,6 +1,6 @@
 #include "StructureGrid.h"
 
-#include "Maths/Converter.h"
+#include "maths/Converter.h"
 
 StructureGrid::StructureGrid(int cellSize, ivec2 offset, StructureTier tier, int maxStructSize)
 	: m_cellSize{ cellSize }, m_offset{ offset }, m_tier{ tier }, m_maxStructSize{ maxStructSize } {}

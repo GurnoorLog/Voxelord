@@ -6,9 +6,9 @@
 
 #include <SFML/Network.hpp>
 
-#include "Block/BlockID.h"
-#include "Maths/GlmCommon.h"
-#include "Network/Protocol.h"
+#include "block/BlockID.h"
+#include "maths/GlmCommon.h"
+#include "network/Protocol.h"
 
 // TCP connection to a GameServer. Non-blocking after connect(); the game thread drains received
 // messages with poll() and sends the small, frame-rate message set directly.

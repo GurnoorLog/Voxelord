@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Block/Block.h"
-#include "Generator/Structure/StructureID.h"
-#include "Util/DynamicArray3D.h"
-#include "Maths/GlmCommon.h"
+#include "block/Block.h"
+#include "generator/Structure/StructureID.h"
+#include "util/DynamicArray3D.h"
+#include "maths/GlmCommon.h"
 
 #include <memory>
 #include <mutex>

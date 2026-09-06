@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Util/DynamicArray3D.h"
-#include "Block/Block.h"
-#include "Maths/GlmCommon.h"
-#include "Maths/LineBlockFinder.h"
+#include "util/DynamicArray3D.h"
+#include "block/Block.h"
+#include "maths/GlmCommon.h"
+#include "maths/LineBlockFinder.h"
 
 #include <algorithm>
 #include <cmath>

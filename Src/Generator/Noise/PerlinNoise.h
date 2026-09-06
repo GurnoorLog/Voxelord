@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
+#include "maths/GlmCommon.h"
 
 #include <array>
 

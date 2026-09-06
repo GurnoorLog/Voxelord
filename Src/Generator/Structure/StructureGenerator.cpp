@@ -1,10 +1,10 @@
 #include "StructureGenerator.h"
 
-#include "Generator/Biome/BiomeMap.h"
-#include "Generator/TerrainShaper.h"
-#include "Maths/Converter.h"
-#include "Maths/MiscMath.h"
-#include "World/Chunk.h"
+#include "generator/Biome/BiomeMap.h"
+#include "generator/TerrainShaper.h"
+#include "maths/Converter.h"
+#include "maths/MiscMath.h"
+#include "world/Chunk.h"
 
 #include <algorithm>
 

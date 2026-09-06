@@ -2,15 +2,15 @@
 #include <filesystem>
 #include <string>
 
-#include "Network/Protocol.h"
-#include "Server/GameServer.h"
-#include "Util/Logger.h"
+#include "network/Protocol.h"
+#include "server/GameServer.h"
+#include "util/Logger.h"
 
 // Dedicated headless server. Usage: voxlord-server [port]
 int main(int argc, char* argv[]) {
-	std::filesystem::create_directories("Data/Logs");
+	std::filesystem::create_directories("assets/Logs");
 	LOG.setFileOutputLevel(Level::INFO);
-	LOG.setOutputFile("Data/Logs/server.log");
+	LOG.setOutputFile("assets/Logs/server.log");
 
 	uint16_t port = Protocol::DEFAULT_PORT;
 	if (argc > 1)

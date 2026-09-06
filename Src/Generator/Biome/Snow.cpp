@@ -1,7 +1,7 @@
 #include "Snow.h"
 
-#include "World/WorldConstants.h"
-#include "Util/Logger.h"
+#include "world/WorldConstants.h"
+#include "util/Logger.h"
 
 int Snow::getHeight(ivec2 pos) const {
 	double noise = perlin.getNoise(static_cast<dvec2>(pos));

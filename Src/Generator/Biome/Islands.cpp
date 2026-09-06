@@ -1,6 +1,6 @@
 #include "Islands.h"
 
-#include "World/WorldConstants.h"
+#include "world/WorldConstants.h"
 
 int Islands::getHeight(ivec2 pos) const {
 	double noise = perlin.getNoise(static_cast<dvec2>(pos));

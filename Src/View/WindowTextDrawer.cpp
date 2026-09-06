@@ -2,12 +2,12 @@
 
 #include <iomanip>
 
-#include "Generator/WorldGenerator.h"
-#include "Util/Logger.h"
-#include "Maths/Converter.h"
+#include "generator/WorldGenerator.h"
+#include "util/Logger.h"
+#include "maths/Converter.h"
 
 WindowTextDrawer::WindowTextDrawer(Window * window) : p_window{ window } {
-	if (!m_font.loadFromFile("Data/Fonts/arial.ttf")) {
+	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
 		LOG(Level::ERROR) << "Failed to load font" << std::endl;
 	}
 }

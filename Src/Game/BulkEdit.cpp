@@ -1,6 +1,6 @@
 #include "BulkEdit.h"
 
-#include "Generator/Noise/OctavePerlin.h"
+#include "generator/Noise/OctavePerlin.h"
 
 #include <random>
 #include <cmath>

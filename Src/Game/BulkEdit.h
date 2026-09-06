@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
-#include "Block/Block.h"
-#include "World/BlockEdit.h"
+#include "maths/GlmCommon.h"
+#include "block/Block.h"
+#include "world/BlockEdit.h"
 
 #include <vector>
 

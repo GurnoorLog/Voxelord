@@ -1,7 +1,7 @@
 #pragma once
 
 #include "glad/glad.h"
-#include "Maths/GlmCommon.h"
+#include "maths/GlmCommon.h"
 
 #include <vector>
 #include <unordered_map>

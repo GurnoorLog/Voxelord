@@ -2,10 +2,10 @@
 
 #include <cctype>
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
 MainMenu::MainMenu(Window* window) : p_window{ window } {
-	if (!m_font.loadFromFile("Data/Fonts/arial.ttf")) {
+	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
 		LOG(Level::ERROR) << "Failed to load font" << std::endl;
 	}
 	m_title.setFont(m_font);

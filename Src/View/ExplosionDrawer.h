@@ -4,8 +4,8 @@
 
 #include <glad/glad.h>
 
-#include "Maths/GlmCommon.h"
-#include "ResManager/Shader.h"
+#include "maths/GlmCommon.h"
+#include "resources/Shader.h"
 
 // Draws animated explosion fireballs. Each is a stack of nested sphere shells, so it has real
 // volume and hides correctly behind terrain instead of being a flat sprite. Spawned the moment an

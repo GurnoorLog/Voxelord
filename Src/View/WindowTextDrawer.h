@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Window.h"
-#include "Maths/GlmCommon.h"
-#include "Game/Game.h"
+#include "maths/GlmCommon.h"
+#include "game/Game.h"
 
 class WindowTextDrawer
 {

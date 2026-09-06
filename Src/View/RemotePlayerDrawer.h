@@ -4,8 +4,8 @@
 
 #include <vector>
 
-#include "Maths/GlmCommon.h"
-#include "ResManager/Shader.h"
+#include "maths/GlmCommon.h"
+#include "resources/Shader.h"
 
 // A remote player's render state: eye position (same convention as Camera) plus yaw, and a
 // body color derived from the player id so teammates are easy to tell apart.

@@ -1,8 +1,8 @@
-#include "Server/ServerWorld.h"
+#include "server/ServerWorld.h"
 
-#include "Maths/Converter.h"
-#include "World/WorldConstants.h"
-#include "Physics/PlayerController.h"
+#include "maths/Converter.h"
+#include "world/WorldConstants.h"
+#include "physics/PlayerController.h"
 
 #include <algorithm>
 

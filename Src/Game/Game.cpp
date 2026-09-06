@@ -1,13 +1,13 @@
 #include "Game.h"
 
-#include "Game/BulkEdit.h"
-#include "Generator/WorldGenerator.h"
-#include "Maths/Converter.h"
-#include "Maths/LineBlockFinder.h"
-#include "Server/GameServer.h"
-#include "Util/DebugGL.h"
-#include "Util/Logger.h"
-#include "World/WorldConstants.h"
+#include "game/BulkEdit.h"
+#include "generator/WorldGenerator.h"
+#include "maths/Converter.h"
+#include "maths/LineBlockFinder.h"
+#include "server/GameServer.h"
+#include "util/DebugGL.h"
+#include "util/Logger.h"
+#include "world/WorldConstants.h"
 
 #include <algorithm>
 #include <cctype>
@@ -15,7 +15,7 @@
 #include <cstdlib>
 #include <sstream>
 
-#include "Block/BlockID.h"
+#include "block/BlockID.h"
 
 namespace {
 	vec3 playerColor(int id) {

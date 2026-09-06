@@ -7,7 +7,7 @@ namespace fs = std::filesystem;
 
 namespace {
 	void loadAll(BlockDatas& datas, const std::vector<TextureArray*>& texArrays, bool resolveTextures) {
-		std::string blocksPath = "Data/Blocks";
+		std::string blocksPath = "assets/Blocks";
 		for (const fs::directory_entry& entry : fs::directory_iterator(blocksPath)) {
 			std::ifstream ifs(entry.path());
 			json j;

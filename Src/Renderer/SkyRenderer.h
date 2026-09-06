@@ -1,9 +1,9 @@
 #pragma once
 
 #include <glad/glad.h>
-#include "Maths/GlmCommon.h"
-#include "ResManager/Shader.h"
-#include "World/Mesh.h"
+#include "maths/GlmCommon.h"
+#include "resources/Shader.h"
+#include "world/Mesh.h"
 
 class Camera;
 

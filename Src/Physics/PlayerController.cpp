@@ -1,8 +1,8 @@
-#include "Physics/PlayerController.h"
+#include "physics/PlayerController.h"
 
 #include <cmath>
 
-#include "Maths/AABB.h"
+#include "maths/AABB.h"
 
 const float PlayerController::WALK_HORIZONTAL_SPEED{ 5.f };
 const float PlayerController::FLY_HORIZONTAL_SPEED{ 15.f };

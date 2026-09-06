@@ -1,13 +1,13 @@
 #include "LavaRenderer.h"
 
-#include "Game/DayCycle.h"
-#include "View/Camera.h"
-#include "World/ChunkMap.h"
-#include "World/Section.h"
+#include "game/DayCycle.h"
+#include "view/Camera.h"
+#include "world/ChunkMap.h"
+#include "world/Section.h"
 
 LavaRenderer::LavaRenderer(const Camera& camera, const DayCycle& dayCycle)
 	: Renderer(camera, dayCycle) {
-	m_shader.loadFromFile("Data/Shaders/lava.vs", "Data/Shaders/lava.frag");
+	m_shader.loadFromFile("assets/Shaders/lava.vs", "assets/Shaders/lava.frag");
 	getShader().use().set("distance", ChunkMap::SIDE);
 }
 

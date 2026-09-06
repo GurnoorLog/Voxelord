@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Generator/Noise/OctavePerlin.h"
-#include "Util/DynamicArray3D.h"
-#include "World/WorldConstants.h"
-#include "Maths/GlmCommon.h"
+#include "generator/Noise/OctavePerlin.h"
+#include "util/DynamicArray3D.h"
+#include "world/WorldConstants.h"
+#include "maths/GlmCommon.h"
 
 // Carves caves out of solid terrain: spaghetti tubes, cheese caverns, ravines.
 // A low-frequency region mask makes caves cluster instead of blanketing the world.

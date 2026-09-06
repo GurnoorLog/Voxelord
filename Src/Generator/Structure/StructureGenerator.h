@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Generator/Biome/BiomeID.h"
-#include "Generator/Structure/StructureGrid.h"
-#include "Generator/Structure/StructureID.h"
+#include "generator/Biome/BiomeID.h"
+#include "generator/Structure/StructureGrid.h"
+#include "generator/Structure/StructureID.h"
 
 #include <memory>
 #include <optional>

@@ -1,4 +1,4 @@
-#include "Network/NetworkClient.h"
+#include "network/NetworkClient.h"
 
 #include <stdexcept>
 

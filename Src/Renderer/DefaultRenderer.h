@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
+#include "maths/GlmCommon.h"
 #include "glad/glad.h"
-#include "Renderer/Renderer.h"
-#include "ResManager/TextureArray.h"
-#include "World/Mesh.h"
+#include "renderer/Renderer.h"
+#include "resources/TextureArray.h"
+#include "world/Mesh.h"
 
 class Section;
 

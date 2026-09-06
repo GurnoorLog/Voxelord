@@ -1,7 +1,7 @@
 #include "Biome.h"
 
-#include "World/WorldConstants.h"
-#include "Maths/MiscMath.h"
+#include "world/WorldConstants.h"
+#include "maths/MiscMath.h"
 
 double Biome::threshold = 0.14, Biome::transition = 0.15;
 

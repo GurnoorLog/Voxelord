@@ -2,7 +2,7 @@
 
 #include <tuple>
 
-#include <Maths/GlmCommon.h>
+#include <maths/GlmCommon.h>
 
 class LineBlockFinder {
 public:

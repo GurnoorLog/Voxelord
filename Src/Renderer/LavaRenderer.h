@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
+#include "maths/GlmCommon.h"
 #include "glad/glad.h"
-#include "Renderer/Renderer.h"
-#include "World/Mesh.h"
+#include "renderer/Renderer.h"
+#include "world/Mesh.h"
 
 class Section;
 

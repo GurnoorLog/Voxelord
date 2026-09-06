@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "View/Window.h"
+#include "view/Window.h"
 
 class Game;
 

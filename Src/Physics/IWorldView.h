@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
-#include "Block/Block.h"
-#include "Block/BlockData.h"
+#include "maths/GlmCommon.h"
+#include "block/Block.h"
+#include "block/BlockData.h"
 
 // Everything physics needs from the world: a block lookup by global position and the block
 // properties (obstacle, fluid category, ...) that decide collisions. Implemented by the client's

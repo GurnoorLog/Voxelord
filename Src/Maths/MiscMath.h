@@ -2,7 +2,7 @@
 
 #include "GlmCommon.h"
 #include "Converter.h"
-#include "Util/DynamicArray3D.h"
+#include "util/DynamicArray3D.h"
 
 #include <algorithm>
 

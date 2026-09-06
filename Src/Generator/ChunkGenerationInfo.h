@@ -1,8 +1,8 @@
 #pragma once
 
-#include "World/WorldConstants.h"
-#include "Generator/Biome/BiomeID.h"
-#include "Maths/GlmCommon.h"
+#include "world/WorldConstants.h"
+#include "generator/Biome/BiomeID.h"
+#include "maths/GlmCommon.h"
 
 #include <vector>
 #include <array>

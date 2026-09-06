@@ -2,11 +2,11 @@
 
 #include "Chunk.h"
 #include "WorldConstants.h"
-#include "ResManager/ResManager.h"
-#include "Block/BlockDatas.h"
-#include "Maths/Converter.h"
-#include "Maths/Dir3D.h"
-#include "Util/DynamicArray3D.h"
+#include "resources/ResManager.h"
+#include "block/BlockDatas.h"
+#include "maths/Converter.h"
+#include "maths/Dir3D.h"
+#include "util/DynamicArray3D.h"
 
 #include <vector>
 #include <queue>

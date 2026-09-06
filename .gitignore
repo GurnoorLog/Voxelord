@@ -2,5 +2,5 @@ build/
 .vs/
 .vscode/
 CMakeSettings.json
-ROADMAP.md
-Data/Logs/
+docs/ROADMAP.md
+assets/Logs/

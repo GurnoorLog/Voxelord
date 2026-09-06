@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Physics/IWorldView.h>
-#include <World/ChunkMap.h>
-#include <ResManager/ResManager.h>
+#include <physics/IWorldView.h>
+#include <world/ChunkMap.h>
+#include "resources/ResManager.h"
 
 // IWorldView adapter over the client's ChunkMap, so PlayerController can run prediction
 // against the render world on the game thread.

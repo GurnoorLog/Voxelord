@@ -2,7 +2,7 @@
 
 #include <SFML/System.hpp>
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
 class FPSCounter {
 private:

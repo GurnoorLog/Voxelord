@@ -1,7 +1,7 @@
 #include "PerlinNoise.h"
-#include "Maths/MiscMath.h"
+#include "maths/MiscMath.h"
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
 double PerlinNoise::getNoise(dvec2 p) {
 	// Unit square that contains the coordinates p, modulo 256

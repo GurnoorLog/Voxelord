@@ -1,7 +1,7 @@
 #include "SkyRenderer.h"
 
-#include "View/Camera.h"
-#include "Util/Logger.h"
+#include "view/Camera.h"
+#include "util/Logger.h"
 
 #include "stb_image/stb_image.h"
 
@@ -60,13 +60,13 @@ namespace {
 }
 
 void SkyRenderer::load() {
-	m_shader.loadFromFile("Data/Shaders/sky.vs", "Data/Shaders/sky.frag");
+	m_shader.loadFromFile("assets/Shaders/sky.vs", "assets/Shaders/sky.frag");
 
 	// Loaded here rather than through Texture2D: its loadFromFile uploads a local copy that is
 	// destroyed at return, so this texture would never receive an id.
 	int width, height, nrChannels;
 	stbi_set_flip_vertically_on_load(true); // PNG top = v = 1 = zenith
-	unsigned char* data = stbi_load("Data/Textures/Sky/sky.png", &width, &height, &nrChannels, 4);
+	unsigned char* data = stbi_load("assets/Textures/Sky/sky.png", &width, &height, &nrChannels, 4);
 	if (data == nullptr) {
 		LOG(Level::ERROR) << "Failed to load sky texture" << std::endl;
 		return;

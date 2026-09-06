@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ResManager/Shader.h"
-#include "World/Mesh.h"
+#include "resources/Shader.h"
+#include "world/Mesh.h"
 
 #include <functional>
 #include <memory>

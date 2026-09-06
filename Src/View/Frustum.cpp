@@ -1,6 +1,6 @@
 #include "Frustum.h"
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
  vec3 Plane::norm() const {
 	 return { x, y, z };

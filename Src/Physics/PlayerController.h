@@ -2,10 +2,10 @@
 
 #include <functional>
 
-#include <Maths/GlmCommon.h>
-#include <Maths/SweptAABB.h>
-#include <Block/Block.h>
-#include <Physics/IWorldView.h>
+#include <maths/GlmCommon.h>
+#include <maths/SweptAABB.h>
+#include <block/Block.h>
+#include <physics/IWorldView.h>
 
 
 

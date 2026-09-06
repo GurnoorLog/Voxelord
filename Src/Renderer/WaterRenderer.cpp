@@ -1,21 +1,21 @@
 #include "WaterRenderer.h"
 
-#include "Game/DayCycle.h"
-#include "ResManager/ResManager.h"
-#include "Util/Logger.h"
-#include "View/Camera.h"
-#include "World/ChunkMap.h"
-#include "World/Section.h"
+#include "game/DayCycle.h"
+#include "resources/ResManager.h"
+#include "util/Logger.h"
+#include "view/Camera.h"
+#include "world/ChunkMap.h"
+#include "world/Section.h"
 
 #include <cmath>
 #include <filesystem>
-#include <World/WorldConstants.h>
+#include <world/WorldConstants.h>
 
 namespace fs = std::filesystem;
 
 WaterRenderer::WaterRenderer(ivec2 windowSize, const Camera& camera, const DayCycle& dayCycle)
 	: Renderer(camera, dayCycle) {
-	m_shader.loadFromFile("Data/Shaders/water.vs", "Data/Shaders/water.frag");
+	m_shader.loadFromFile("assets/Shaders/water.vs", "assets/Shaders/water.frag");
 
 	getShader().use().set("distance", ChunkMap::SIDE);
 	getShader().use().set("simple", simple);
@@ -109,7 +109,7 @@ void WaterRenderer::onChangedSize(ivec2 windowSize) {
 	if (!refractionTexture.create(windowSize.x, windowSize.y, settings)) {
 		LOG(Level::ERROR) << "Could not create refraction texture" << std::endl;
 	}
-	if (!dudvMap.loadFromFile("Data/Textures/Water/dudvMap.png")) {
+	if (!dudvMap.loadFromFile("assets/Textures/Water/dudvMap.png")) {
 		LOG(Level::ERROR) << "Could not create DuDv Map texture" << std::endl;
 	}
 	dudvMap.setRepeated(true);

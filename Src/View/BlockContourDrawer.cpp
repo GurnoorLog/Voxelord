@@ -18,7 +18,7 @@ namespace {
 }
 
 BlockContourDrawer::BlockContourDrawer() {
-	m_shader.loadFromFile("Data/Shaders/contour.vs", "Data/Shaders/contour.frag");
+	m_shader.loadFromFile("assets/Shaders/contour.vs", "assets/Shaders/contour.frag");
 	buildMesh();
 }
 

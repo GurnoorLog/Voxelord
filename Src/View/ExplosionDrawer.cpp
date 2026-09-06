@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include <vector>
 
-#include "World/ChunkMap.h"
+#include "world/ChunkMap.h"
 
 namespace {
 	// Only needs to look round; fire detail comes from the shader's noise, not the geometry.
@@ -37,7 +37,7 @@ namespace {
 }
 
 ExplosionDrawer::ExplosionDrawer() {
-	m_shader.loadFromFile("Data/Shaders/explosion.vs", "Data/Shaders/explosion.frag");
+	m_shader.loadFromFile("assets/Shaders/explosion.vs", "assets/Shaders/explosion.frag");
 	// Fog distance, matching the terrain shader.
 	m_shader.use().set("distance", ChunkMap::SIDE);
 	buildMesh();

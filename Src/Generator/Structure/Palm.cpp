@@ -1,8 +1,8 @@
 #include "Palm.h"
 
-#include "Generator/WorldGenerator.h"
-#include "Maths/Dir3D.h"
-#include "Maths/Dir2D.h"
+#include "generator/WorldGenerator.h"
+#include "maths/Dir3D.h"
+#include "maths/Dir2D.h"
 
 Palm::Palm() : Structure({ 9, 7, 9 }) {
 	ivec2 center = Structure::getCenterPos();

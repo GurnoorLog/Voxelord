@@ -1,8 +1,8 @@
 #include "Mountains.h"
 
-#include "World/WorldConstants.h"
-#include "Util/Logger.h"
-#include "Maths/Converter.h"
+#include "world/WorldConstants.h"
+#include "util/Logger.h"
+#include "maths/Converter.h"
 
 int Mountains::getHeight(ivec2 pos) const {
 	dvec2 p = static_cast<dvec2>(pos);

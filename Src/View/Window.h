@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
-#include <Maths/GlmCommon.h>
+#include <maths/GlmCommon.h>
 
 #include <memory>
 

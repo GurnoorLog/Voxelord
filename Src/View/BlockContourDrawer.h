@@ -4,8 +4,8 @@
 
 #include <glad/glad.h>
 
-#include "Maths/GlmCommon.h"
-#include "ResManager/Shader.h"
+#include "maths/GlmCommon.h"
+#include "resources/Shader.h"
 
 class BlockContourDrawer {
 public:

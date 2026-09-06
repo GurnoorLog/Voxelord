@@ -7,7 +7,7 @@
 
 #include "Texture2D.h"
 #include "Shader.h"
-#include "Block/BlockDatas.h"
+#include "block/BlockDatas.h"
 #include "TextureArray.h"
 
 class ResManager

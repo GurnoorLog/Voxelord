@@ -1,7 +1,7 @@
 #include "Fir.h"
 
-#include "Generator/WorldGenerator.h"
-#include "Maths/Dir3D.h"
+#include "generator/WorldGenerator.h"
+#include "maths/Dir3D.h"
 
 Fir::Fir() : Structure({ 5, 7, 5 }) {
 	ivec2 center = getCenterPos();

@@ -1,6 +1,6 @@
 #include "Shader.h"
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 #include "ResManager.h"
 
 #include <iostream>

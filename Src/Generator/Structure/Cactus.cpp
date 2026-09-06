@@ -1,6 +1,6 @@
 #include "Cactus.h"
 
-#include "Generator/WorldGenerator.h"
+#include "generator/WorldGenerator.h"
 
 Cactus::Cactus() : Structure({ 1, 5, 1 }) {
 	ivec2 center = getCenterPos();

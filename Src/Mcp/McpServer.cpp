@@ -1,9 +1,9 @@
-#include "Mcp/McpServer.h"
+#include "mcp/McpServer.h"
 
 #include <cstring>
 #include <sstream>
 
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
 namespace {
 	// Newline-delimited JSON: each object is one complete line. SFML sockets give us a byte

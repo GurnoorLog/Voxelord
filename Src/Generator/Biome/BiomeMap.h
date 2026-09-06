@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Generator/Biome/Biome.h"
-#include "Generator/Biome/BiomeID.h"
-#include "Generator/Structure/Structure.h"
-#include "Generator/Structure/StructureID.h"
-#include "Generator/Noise/OctavePerlin.h"
-#include "Maths/GlmCommon.h"
+#include "generator/Biome/Biome.h"
+#include "generator/Biome/BiomeID.h"
+#include "generator/Structure/Structure.h"
+#include "generator/Structure/StructureID.h"
+#include "generator/Noise/OctavePerlin.h"
+#include "maths/GlmCommon.h"
 
 #include <memory>
 #include <array>

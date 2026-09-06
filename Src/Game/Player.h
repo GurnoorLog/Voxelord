@@ -5,12 +5,12 @@
 
 #include <SFML/Window.hpp>
 
-#include <View/Camera.h>
-#include <Physics/PlayerController.h>
-#include <World/ChunkWorldView.h>
-#include <Block/Block.h>
-#include <Block/BlockID.h>
-#include <Commands/Commands.h>
+#include <view/Camera.h>
+#include <physics/PlayerController.h>
+#include <world/ChunkWorldView.h>
+#include <block/Block.h>
+#include <block/BlockID.h>
+#include <commands/Commands.h>
 
 class Game;
 

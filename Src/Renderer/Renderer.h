@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ResManager/Shader.h"
+#include "resources/Shader.h"
 
 #include <SFML/System/Time.hpp>
 

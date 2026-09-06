@@ -1,9 +1,9 @@
 #pragma once
 
-#include "World/Chunk.h"
-#include "Generator/Biome/BiomeMap.h"
-#include "Generator/TerrainShaper.h"
-#include "Generator/Structure/StructureGenerator.h"
+#include "world/Chunk.h"
+#include "generator/Biome/BiomeMap.h"
+#include "generator/TerrainShaper.h"
+#include "generator/Structure/StructureGenerator.h"
 
 class WorldGenerator {
 public:

@@ -1,11 +1,11 @@
 #include "PickedBlockDrawer.h"
 
-#include "ResManager/ResManager.h"
-#include "Block/BlockDatas.h"
-#include "World/CubeData.h"
-#include "World/Mesh.h"
-#include "View/Window.h"
-#include "Renderer/DefaultRenderer.h"
+#include "resources/ResManager.h"
+#include "block/BlockDatas.h"
+#include "world/CubeData.h"
+#include "world/Mesh.h"
+#include "view/Window.h"
+#include "renderer/DefaultRenderer.h"
 
 
 DefaultMesh PickedBlockDrawer::buildHeldBlockMesh(Block block) {

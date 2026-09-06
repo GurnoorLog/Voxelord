@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Window.h"
-#include "Util/Logger.h"
+#include "util/Logger.h"
 
 class Crosshair
 {
@@ -12,7 +12,7 @@ private:
 	sf::Sprite crossHair;
 public:
 	Crosshair(Window* p_window) : p_window{ p_window } {
-		if (!crossHairTexture.loadFromFile("Data/Textures/HUD/Crosshair.png")) {
+		if (!crossHairTexture.loadFromFile("assets/Textures/HUD/Crosshair.png")) {
 			LOG(Level::ERROR) << "Failed to load crosshair texture" << std::endl;
 		}
 		crossHair.setTexture(crossHairTexture);

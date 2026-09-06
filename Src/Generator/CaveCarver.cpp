@@ -1,8 +1,8 @@
 #include "CaveCarver.h"
 
-#include "Maths/MiscMath.h"
-#include "Maths/Converter.h"
-#include "Generator/Noise/PerlinNoise.h"
+#include "maths/MiscMath.h"
+#include "maths/Converter.h"
+#include "generator/Noise/PerlinNoise.h"
 
 #include <algorithm>
 #include <cmath>

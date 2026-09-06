@@ -1,7 +1,7 @@
 #include "BiomeMap.h"
 
-#include "Generator/Noise/PerlinNoise.h"
-#include "Maths/MiscMath.h"
+#include "generator/Noise/PerlinNoise.h"
+#include "maths/MiscMath.h"
 
 #include <cmath>
 
@@ -15,16 +15,16 @@
 #include "Islands.h"
 #include "Swamp.h"
 
-#include "Generator/Structure/Oak.h"
-#include "Generator/Structure/BigOak.h"
-#include "Generator/Structure/Willow.h"
-#include "Generator/Structure/Maple.h"
-#include "Generator/Structure/Cherry.h"
-#include "Generator/Structure/Fir.h"
-#include "Generator/Structure/Palm.h"
-#include "Generator/Structure/DeadTree.h"
-#include "Generator/Structure/Cactus.h"
-#include "Util/Logger.h"
+#include "generator/Structure/Oak.h"
+#include "generator/Structure/BigOak.h"
+#include "generator/Structure/Willow.h"
+#include "generator/Structure/Maple.h"
+#include "generator/Structure/Cherry.h"
+#include "generator/Structure/Fir.h"
+#include "generator/Structure/Palm.h"
+#include "generator/Structure/DeadTree.h"
+#include "generator/Structure/Cactus.h"
+#include "util/Logger.h"
 
 BiomeMap::BiomeMap() {
 	addBiome(std::make_unique<ExtremeMountains>(), BiomeID::EXTREME_MOUNTAINS, "Extreme mountains");

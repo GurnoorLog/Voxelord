@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Generator/CaveCarver.h"
-#include "Generator/Noise/OctavePerlin.h"
-#include "World/WorldConstants.h"
+#include "generator/CaveCarver.h"
+#include "generator/Noise/OctavePerlin.h"
+#include "world/WorldConstants.h"
 
 #include <optional>
 

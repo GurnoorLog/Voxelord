@@ -4,8 +4,8 @@
 #include <cmath>
 
 #include "Window.h"
-#include "Maths/Converter.h"
-#include "Util/Logger.h"
+#include "maths/Converter.h"
+#include "util/Logger.h"
 
 const float Camera::SENSIVITY{ 0.16f };
 const float Camera::SCROLLSPEED{ 3.f / 2 };

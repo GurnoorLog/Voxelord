@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Generator/Biome/Biome.h"
-#include "Generator/Noise/OctavePerlin.h"
+#include "generator/Biome/Biome.h"
+#include "generator/Noise/OctavePerlin.h"
 
 class Islands : public Biome {
 	virtual int getHeight(ivec2 pos) const override;

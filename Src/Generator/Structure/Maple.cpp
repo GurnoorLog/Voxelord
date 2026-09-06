@@ -1,8 +1,8 @@
 #include "Maple.h"
 
 #include "TreeShapes.h"
-#include "Generator/WorldGenerator.h"
-#include "Maths/Dir3D.h"
+#include "generator/WorldGenerator.h"
+#include "maths/Dir3D.h"
 
 #include <algorithm>
 #include <cmath>

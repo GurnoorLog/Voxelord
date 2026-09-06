@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Section.h"
-#include "Generator/ChunkGenerationInfo.h"
+#include "generator/ChunkGenerationInfo.h"
 #include "WorldConstants.h"
 
 #include <vector>

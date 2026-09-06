@@ -1,18 +1,18 @@
 #include "DefaultRenderer.h"
 
-#include "Game/DayCycle.h"
-#include "ResManager/ResManager.h"
-#include "Util/Logger.h"
-#include "View/Camera.h"
-#include "World/ChunkMap.h"
-#include "World/Section.h"
+#include "game/DayCycle.h"
+#include "resources/ResManager.h"
+#include "util/Logger.h"
+#include "view/Camera.h"
+#include "world/ChunkMap.h"
+#include "world/Section.h"
 
 #include <filesystem>
 
 namespace fs = std::filesystem;
 
 std::vector<fs::path> getPaths() {
-	std::string blockTexturesPath = "Data/Textures/Blocks";
+	std::string blockTexturesPath = "assets/Textures/Blocks";
 	std::vector<fs::path> paths;
 	for (const fs::directory_entry& entry : fs::directory_iterator(blockTexturesPath)) {
 		if (entry.path().extension().string() == ".png") {
@@ -24,7 +24,7 @@ std::vector<fs::path> getPaths() {
 
 DefaultRenderer::DefaultRenderer(const Camera& camera, const DayCycle& dayCycle)
 	: Renderer(camera, dayCycle), texArray{ getPaths(), ivec2{ 16, 16 }, GL_RGBA } {
-	m_shader.loadFromFile("Data/Shaders/cube.vs", "Data/Shaders/cube.frag");
+	m_shader.loadFromFile("assets/Shaders/cube.vs", "assets/Shaders/cube.frag");
 
 	getShader().use().set("distance", ChunkMap::SIDE);
 }

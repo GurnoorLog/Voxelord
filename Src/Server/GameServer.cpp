@@ -1,11 +1,11 @@
-#include "Server/GameServer.h"
+#include "server/GameServer.h"
 
 #include <iostream>
 #include <thread>
 
-#include "Game/BulkEdit.h"
-#include "Maths/Converter.h"
-#include "Util/Logger.h"
+#include "game/BulkEdit.h"
+#include "maths/Converter.h"
+#include "util/Logger.h"
 
 GameServer::GameServer(uint16_t port) : m_port{ port } {}
 

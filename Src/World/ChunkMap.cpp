@@ -1,14 +1,14 @@
 #include "ChunkMap.h"
 
 #include "LightEngine.h"
-#include "ResManager/ResManager.h"
-#include "Util/DebugGL.h"
-#include "Maths/Dir2D.h"
-#include "Maths/Dir3D.h"
-#include "Util/Array3D.h"
-#include "Util/Logger.h"
-#include "Maths/MiscMath.h"
-#include "Maths/Converter.h"
+#include "resources/ResManager.h"
+#include "util/DebugGL.h"
+#include "maths/Dir2D.h"
+#include "maths/Dir3D.h"
+#include "util/Array3D.h"
+#include "util/Logger.h"
+#include "maths/MiscMath.h"
+#include "maths/Converter.h"
 
 #include <vector>
 #include <array>

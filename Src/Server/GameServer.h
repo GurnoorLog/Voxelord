@@ -8,9 +8,9 @@
 
 #include <SFML/Network.hpp>
 
-#include "Network/Protocol.h"
-#include "Server/ServerWorld.h"
-#include "Physics/PlayerController.h"
+#include "network/Protocol.h"
+#include "server/ServerWorld.h"
+#include "physics/PlayerController.h"
 
 // One connected player's server-side state: the authoritative position driven by the shared
 // PlayerController, plus the latest input snapshot from the client.

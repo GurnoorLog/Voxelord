@@ -1,9 +1,9 @@
 #include "ExtremeMountains.h"
 
-#include "Generator/Noise/PerlinNoise.h"
-#include "World/WorldConstants.h"
-#include "Maths/Converter.h"
-#include "Util/Logger.h"
+#include "generator/Noise/PerlinNoise.h"
+#include "world/WorldConstants.h"
+#include "maths/Converter.h"
+#include "util/Logger.h"
 
 int ExtremeMountains::getHeight(ivec2 pos) const {
 	dvec2 p = static_cast<dvec2>(pos);

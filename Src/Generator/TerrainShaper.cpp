@@ -1,10 +1,10 @@
 #include "TerrainShaper.h"
 
-#include "Generator/Biome/BiomeMap.h"
-#include "Maths/Converter.h"
-#include "Maths/MiscMath.h"
-#include "Util/DynamicArray3D.h"
-#include "World/Chunk.h"
+#include "generator/Biome/BiomeMap.h"
+#include "maths/Converter.h"
+#include "maths/MiscMath.h"
+#include "util/DynamicArray3D.h"
+#include "world/Chunk.h"
 
 #include <algorithm>
 #include <array>

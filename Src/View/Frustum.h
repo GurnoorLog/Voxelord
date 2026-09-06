@@ -2,9 +2,9 @@
 
 #include <array>
 
-#include <Maths/Dir3D.h>
-#include <Maths/GlmCommon.h>
-#include <Maths/AABB.h>
+#include <maths/Dir3D.h>
+#include <maths/GlmCommon.h>
+#include <maths/AABB.h>
 
 struct Plane : vec4 {
 	vec3 norm() const;

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
-#include "Maths/Dir2D.h"
-#include "Block/Block.h"
+#include "maths/GlmCommon.h"
+#include "maths/Dir2D.h"
+#include "block/Block.h"
 
 #include <array>
 #include <vector>

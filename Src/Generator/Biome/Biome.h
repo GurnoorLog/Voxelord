@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Maths/GlmCommon.h"
-#include "Block/Block.h"
-#include "Generator/Biome/BiomeID.h"
-#include "Generator/Structure/StructureID.h"
+#include "maths/GlmCommon.h"
+#include "block/Block.h"
+#include "generator/Biome/BiomeID.h"
+#include "generator/Structure/StructureID.h"
 
 #include <vector>
 

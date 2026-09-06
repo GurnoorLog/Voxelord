@@ -24,7 +24,7 @@ namespace {
 }
 
 RemotePlayerDrawer::RemotePlayerDrawer() {
-	m_shader.loadFromFile("Data/Shaders/flat.vs", "Data/Shaders/flat.frag");
+	m_shader.loadFromFile("assets/Shaders/flat.vs", "assets/Shaders/flat.frag");
 	buildMesh();
 }
 

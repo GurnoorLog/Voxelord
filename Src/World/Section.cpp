@@ -1,11 +1,11 @@
 #include "Section.h"
 
-#include "Generator/Noise/OctavePerlin.h"
-#include "Maths/Converter.h"
+#include "generator/Noise/OctavePerlin.h"
+#include "maths/Converter.h"
 #include "Chunk.h"
-#include "Util/DebugGL.h"
-#include "ResManager/ResManager.h"
-#include "Util/Logger.h"
+#include "util/DebugGL.h"
+#include "resources/ResManager.h"
+#include "util/Logger.h"
 #include "CubeData.h"
 
 #include <iostream>

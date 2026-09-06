@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <Maths/GlmCommon.h>
+#include <maths/GlmCommon.h>
 
 #include <array>
 #include <vector>
@@ -10,12 +10,12 @@
 #include <memory>
 #include <utility>
 
-#include "Util/Array3D.h"
-#include "Maths/Dir2D.h"
-#include "Maths/Dir3D.h"
-#include "Block/Block.h"
+#include "util/Array3D.h"
+#include "maths/Dir2D.h"
+#include "maths/Dir3D.h"
+#include "block/Block.h"
 #include "Mesh.h"
-#include "Renderer/Renderer.h"
+#include "renderer/Renderer.h"
 #include "WorldConstants.h"
 
 class Chunk;

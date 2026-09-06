@@ -1,13 +1,13 @@
 #include "PostProcessingRenderer.h"
 
-#include "Game/DayCycle.h"
-#include "World/CubeData.h"
-#include "ResManager/ResManager.h"
-#include "Util/Logger.h"
+#include "game/DayCycle.h"
+#include "world/CubeData.h"
+#include "resources/ResManager.h"
+#include "util/Logger.h"
 
 PostProcessingRenderer::PostProcessingRenderer(ivec2 windowSize, const DayCycle& dayCycle)
 	: m_dayCycle(dayCycle) {
-	m_shader.loadFromFile("Data/Shaders/post_processing.vs", "Data/Shaders/post_processing.frag");
+	m_shader.loadFromFile("assets/Shaders/post_processing.vs", "assets/Shaders/post_processing.frag");
 
 	getShader().use().set("renderTexture", 0);
 

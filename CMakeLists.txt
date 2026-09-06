@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(VIEW_DISTANCE 32 CACHE STRING "View distance, in sections")
 set(LOADING_WORKERS_COUNT 4 CACHE STRING "Number of worker threads used to load chunks")
 
-file(GLOB_RECURSE sources_all Src/*.cpp Src/*.c Src/*.h Src/*.hpp)
-file(GLOB_RECURSE external External/*.cpp External/*.c External/*.h External/*.hpp)
-file(GLOB_RECURSE data Data/*)
+file(GLOB_RECURSE sources_all src/*.cpp src/*.c src/*.h src/*.hpp)
+file(GLOB_RECURSE external_sources external/*.cpp external/*.c external/*.h external/*.hpp)
+file(GLOB_RECURSE data assets/*)
 
 # Client target: everything except the dedicated server's main.
 set(sources ${sources_all})
@@ -18,12 +18,12 @@ list(FILTER sources EXCLUDE REGEX ".*[/\\\\]main_server\\.cpp$")
 set(server_sources ${sources_all})
 list(FILTER server_sources EXCLUDE REGEX ".*[/\\\\]main\\.cpp$")
 
-add_executable(voxlord ${sources} ${external} ${data})
-add_executable(voxlord-server ${server_sources} ${external} ${data})
+add_executable(voxlord ${sources} ${external_sources} ${data})
+add_executable(voxlord-server ${server_sources} ${external_sources} ${data})
 
-target_include_directories(voxlord PUBLIC Src External)
-target_include_directories(voxlord-server PUBLIC Src External)
-include_directories(Src External)
+target_include_directories(voxlord PUBLIC src external)
+target_include_directories(voxlord-server PUBLIC src external)
+include_directories(src external)
 
 foreach(target voxlord voxlord-server)
 	target_compile_definitions(${target} PRIVATE
@@ -31,7 +31,7 @@ foreach(target voxlord voxlord-server)
 	                           CC_LOADING_WORKERS_COUNT=${LOADING_WORKERS_COUNT})
 endforeach()
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 find_package(SFML 2.6 COMPONENTS graphics network REQUIRED)
 target_link_libraries(voxlord PRIVATE sfml-graphics sfml-network)

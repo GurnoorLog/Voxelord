@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Maths/Dir3D.h"
+#include "maths/Dir3D.h"
 #include "json/json.hpp"
 
-#include "ResManager/TextureArray.h"
+#include "resources/TextureArray.h"
 
 #include <array>
 #include <vector>

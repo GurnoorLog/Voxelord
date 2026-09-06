@@ -3,19 +3,19 @@
 #include <SFML/OpenGL.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "Game/Game.h"
-#include "Util/DebugGL.h"
-#include "View/Window.h"
-#include "View/MainMenu.h"
-#include "Util/Logger.h"
-#include "Util/FPSCounter.h"
-#include "World/WorldConstants.h"
-#include "View/WindowTextDrawer.h"
-#include "View/CaptureMouse.h"
-#include "View/Crosshair.h"
-#include "Commands/Commands.h"
-#include "Network/Protocol.h"
-#include "Server/GameServer.h"
+#include "game/Game.h"
+#include "util/DebugGL.h"
+#include "view/Window.h"
+#include "view/MainMenu.h"
+#include "util/Logger.h"
+#include "util/FPSCounter.h"
+#include "world/WorldConstants.h"
+#include "view/WindowTextDrawer.h"
+#include "view/CaptureMouse.h"
+#include "view/Crosshair.h"
+#include "commands/Commands.h"
+#include "network/Protocol.h"
+#include "server/GameServer.h"
 
 #include <filesystem>
 #include <memory>
@@ -28,9 +28,9 @@ enum class AppState {
 };
 
 int main(int argc, char* argv[]) {
-	std::filesystem::create_directories("Data/Logs");
+	std::filesystem::create_directories("assets/Logs");
 	LOG.setFileOutputLevel(Level::DEBUG);
-	LOG.setOutputFile("Data/Logs/global.log");
+	LOG.setOutputFile("assets/Logs/global.log");
 
 	// Optional --connect <host> skips the menu and joins a server immediately; --host starts an
 	// embedded server and joins it (the host-and-play path) without needing the menu. Both are

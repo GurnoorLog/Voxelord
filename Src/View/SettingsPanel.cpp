@@ -1,10 +1,10 @@
-#include "View/SettingsPanel.h"
+#include "view/SettingsPanel.h"
 
 #include <string>
 #include <vector>
 
-#include "Game/Game.h"
-#include "Util/Logger.h"
+#include "game/Game.h"
+#include "util/Logger.h"
 
 namespace {
 	constexpr float GEAR_SIZE{ 0.03f };
@@ -20,7 +20,7 @@ namespace {
 }
 
 SettingsPanel::SettingsPanel(Window* window) : p_window{ window } {
-	if (!m_font.loadFromFile("Data/Fonts/arial.ttf")) {
+	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
 		LOG(Level::ERROR) << "Failed to load font" << std::endl;
 	}
 }

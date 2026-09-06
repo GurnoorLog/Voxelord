@@ -1,6 +1,6 @@
 #include "DeadTree.h"
 
-#include "Generator/WorldGenerator.h"
+#include "generator/WorldGenerator.h"
 
 DeadTree::DeadTree() : Structure({ 7, 6, 7 }) {
 	ivec2 center = getCenterPos();

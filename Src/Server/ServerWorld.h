@@ -4,11 +4,11 @@
 #include <optional>
 #include <unordered_map>
 
-#include "Maths/GlmCommon.h"
-#include "World/Chunk.h"
-#include "Physics/IWorldView.h"
-#include "Generator/WorldGenerator.h"
-#include "Block/BlockDatas.h"
+#include "maths/GlmCommon.h"
+#include "world/Chunk.h"
+#include "physics/IWorldView.h"
+#include "generator/WorldGenerator.h"
+#include "block/BlockDatas.h"
 
 // The server's authoritative world store: a plain chunk map generated deterministically from the
 // same generator the client uses. Implements IWorldView so the shared PlayerController drives server

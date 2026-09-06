@@ -1,8 +1,8 @@
 #include <optional>
 #include <vector>
 
-#include "Block/Block.h"
-#include "World/Mesh.h"
+#include "block/Block.h"
+#include "world/Mesh.h"
 
 class DefaultRenderer;
 class Window;

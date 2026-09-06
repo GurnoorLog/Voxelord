@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Util/DynamicArray3D.h"
-#include "Block/Block.h"
-#include "Generator/Biome/BiomeID.h"
+#include "util/DynamicArray3D.h"
+#include "block/Block.h"
+#include "generator/Biome/BiomeID.h"
 
-#include "Maths/GlmCommon.h"
+#include "maths/GlmCommon.h"
 
 #include <cstdint>
 #include <optional>

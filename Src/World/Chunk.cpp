@@ -1,10 +1,10 @@
 #include "Chunk.h"
 
-#include "Maths/GlmCommon.h"
-#include "Maths/Converter.h"
+#include "maths/GlmCommon.h"
+#include "maths/Converter.h"
 #include "ChunkMap.h"
 #include "LightEngine.h"
-#include "Generator/WorldGenerator.h"
+#include "generator/WorldGenerator.h"
 
 Chunk::Chunk(ChunkMap* const chunkMap, ivec2 position)
 	: p_chunkMap{ chunkMap }, m_position{ position } {

@@ -1,10 +1,10 @@
 #include "Player.h"
 
-#include "Maths/Converter.h"
+#include "maths/Converter.h"
 
-#include <Game/Game.h>
-#include <Maths/LineBlockFinder.h>
-#include <World/ChunkWorldView.h>
+#include <game/Game.h>
+#include <maths/LineBlockFinder.h>
+#include <world/ChunkWorldView.h>
 
 const vec3 Player::INITIAL_POSITION{ vec3{ 0.f, 80.f, 0.f } };
 const float Player::DEFAULT_TARGET_DISTANCE{ static_cast<float>(ChunkMap::VIEW_DISTANCE * Const::SECTION_SIDE) };

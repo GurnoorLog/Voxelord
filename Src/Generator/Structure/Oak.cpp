@@ -1,6 +1,6 @@
 #include "Oak.h"
 
-#include "Generator/WorldGenerator.h"
+#include "generator/WorldGenerator.h"
 
 Oak::Oak() : Structure({ 5, 7, 5 }) {
 	ivec2 center = getCenterPos();

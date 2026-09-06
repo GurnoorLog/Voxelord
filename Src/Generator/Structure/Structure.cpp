@@ -1,7 +1,7 @@
 #include "Structure.h"
 
-#include "Maths/Converter.h"
-#include "Maths/Dir2D.h"
+#include "maths/Converter.h"
+#include "maths/Dir2D.h"
 
 Structure::Structure(ivec3 size) : m_blocks{ size } {}
 

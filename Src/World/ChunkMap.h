@@ -1,10 +1,10 @@
 #pragma once
 
-#include "World/Chunk.h"
-#include "World/WorldConstants.h"
-#include "World/BlockEdit.h"
-#include "View/Frustum.h"
-#include "Maths/GlmCommon.h"
+#include "world/Chunk.h"
+#include "world/WorldConstants.h"
+#include "world/BlockEdit.h"
+#include "view/Frustum.h"
+#include "maths/GlmCommon.h"
 
 #include <vector>
 #include <queue>
