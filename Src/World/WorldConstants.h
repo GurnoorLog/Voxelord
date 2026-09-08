@@ -11,4 +11,10 @@ namespace Const {
 	const int SEA_LEVEL = 64;
 	const int LAVA_MIN = 6;
 	const int LAVA_MAX = 22;
+
+	// Default spawn height when no terrain has been scanned yet (client and server agree).
+	const int SPAWN_Y = 80;
+	// A full daylight cycle in real seconds (server advances its clock with the same value as the
+	// client so both reach the same time of day).
+	const float DAY_LENGTH_SECONDS = 120.f;
 }

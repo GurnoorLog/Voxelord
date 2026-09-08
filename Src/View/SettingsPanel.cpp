@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "game/Game.h"
-#include "util/Logger.h"
+#include "util/Text.h"
 
 namespace {
 	constexpr float GEAR_SIZE{ 0.03f };
@@ -13,16 +13,10 @@ namespace {
 	constexpr float PANEL_H{ 0.30f };
 	constexpr float ROW_H{ 0.052f };
 	constexpr float ROW_GAP{ 0.012f };
-
-	sf::Vector2f center(sf::FloatRect rect) {
-		return { rect.left + rect.width / 2.f, rect.top + rect.height / 2.f };
-	}
 }
 
 SettingsPanel::SettingsPanel(Window* window) : p_window{ window } {
-	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
-		LOG(Level::ERROR) << "Failed to load font" << std::endl;
-	}
+	loadGameFont(m_font);
 }
 
 sf::FloatRect SettingsPanel::gearBounds() const {
@@ -36,10 +30,6 @@ sf::FloatRect SettingsPanel::panelRect() const {
 	float w = size.x * PANEL_W;
 	float h = size.y * PANEL_H;
 	return { (size.x - w) / 2.f, (size.y - h) / 2.f, w, h };
-}
-
-sf::FloatRect SettingsPanel::panelBounds() const {
-	return panelRect();
 }
 
 bool SettingsPanel::isOverButton(sf::Vector2f point) const {
@@ -110,9 +100,7 @@ void SettingsPanel::draw(Game& game) {
 	gearLabel.setString("Settings");
 	gearLabel.setCharacterSize(static_cast<unsigned int>(gear.height * 0.5f));
 	gearLabel.setFillColor(sf::Color::White);
-	const sf::FloatRect gearText = gearLabel.getLocalBounds();
-	gearLabel.setOrigin({ gearText.left + gearText.width / 2.f, gearText.top + gearText.height / 2.f });
-	gearLabel.setPosition(center(gear));
+	centerTextOn(gearLabel, { gear.left + gear.width / 2.f, gear.top + gear.height / 2.f });
 	p_window->draw(gearLabel);
 
 	if (!m_open)
@@ -131,9 +119,7 @@ void SettingsPanel::draw(Game& game) {
 	title.setString("Settings");
 	title.setCharacterSize(static_cast<unsigned int>(panel.height * 0.1f));
 	title.setFillColor(sf::Color::White);
-	const sf::FloatRect titleBounds = title.getLocalBounds();
-	title.setOrigin({ titleBounds.left + titleBounds.width / 2.f, titleBounds.top + titleBounds.height / 2.f });
-	title.setPosition({ panel.left + panel.width / 2.f, panel.top + panel.height * 0.1f });
+	centerTextOn(title, { panel.left + panel.width / 2.f, panel.top + panel.height * 0.1f });
 	p_window->draw(title);
 
 	std::vector<Row> rows{ { {}, "Fly", game.getPlayer().isFlying() },
@@ -175,8 +161,6 @@ void SettingsPanel::draw(Game& game) {
 	hint.setString("AI player listens on port 8765. Say @bot in chat to command it.");
 	hint.setCharacterSize(static_cast<unsigned int>(panel.height * 0.05f));
 	hint.setFillColor(sf::Color{ 150, 160, 175 });
-	const sf::FloatRect hintBounds = hint.getLocalBounds();
-	hint.setOrigin({ hintBounds.left + hintBounds.width / 2.f, hintBounds.top + hintBounds.height / 2.f });
-	hint.setPosition({ panel.left + panel.width / 2.f, panel.top + panel.height * 0.87f });
+	centerTextOn(hint, { panel.left + panel.width / 2.f, panel.top + panel.height * 0.87f });
 	p_window->draw(hint);
 }

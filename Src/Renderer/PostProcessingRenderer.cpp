@@ -3,7 +3,7 @@
 #include "game/DayCycle.h"
 #include "world/CubeData.h"
 #include "resources/ResManager.h"
-#include "util/Logger.h"
+#include "util/RenderTexture.h"
 
 PostProcessingRenderer::PostProcessingRenderer(ivec2 windowSize, const DayCycle& dayCycle)
 	: m_dayCycle(dayCycle) {
@@ -61,16 +61,8 @@ void PostProcessingRenderer::setInLava(bool inLava) {
 }
 
 void PostProcessingRenderer::onChangedSize(ivec2 windowSize) {
-	sf::ContextSettings settings;
-	settings.majorVersion = 4;
-	settings.minorVersion = 3;
-	settings.depthBits = 24;
-	settings.stencilBits = 8;
 	// Disable antialiasing as it creates artifacts for distant blocks.
-	settings.antialiasingLevel = 0;
-	if (!m_renderTexture.create(windowSize.x, windowSize.y, settings)) {
-		LOG(Level::ERROR) << "Could not create render texture" << std::endl;
-	}
+	createRenderTexture(m_renderTexture, windowSize, "render texture");
 	// Linear filtering so the FXAA pass can sample between texels.
 	m_renderTexture.setSmooth(true);
 }

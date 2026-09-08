@@ -1,18 +1,11 @@
 #include "BigOak.h"
 
 #include "TreeShapes.h"
-#include "generator/WorldGenerator.h"
-#include "maths/Dir3D.h"
 
 #include <algorithm>
 #include <cmath>
 
-namespace {
-	constexpr int WIDTH = 15;
-	constexpr int HEIGHT = 26;
-}
-
-BigOak::BigOak() : Structure({ WIDTH, HEIGHT, WIDTH }) {}
+BigOak::BigOak() : Structure({ 15, 26, 15 }) {}
 
 DynamicArray3D<Block> BigOak::build(uint32_t seed) const {
 	DynamicArray3D<Block> blocks(size());
@@ -52,7 +45,5 @@ DynamicArray3D<Block> BigOak::build(uint32_t seed) const {
 }
 
 bool BigOak::isValidPos(ivec3 centerPos, BiomeID biomeID) const {
-	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
-	BlockID blockID = biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id;
-	return centerPos.y >= Const::SEA_LEVEL && (blockID == +BlockID::GRASS || blockID == +BlockID::DIRT);
+	return isGroundedOn(centerPos, biomeID, { +BlockID::GRASS, +BlockID::DIRT });
 }

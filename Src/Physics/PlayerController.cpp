@@ -58,10 +58,6 @@ void PlayerController::setFlying(bool flying) {
 	m_flying = flying;
 }
 
-bool PlayerController::getFlying() const {
-	return m_flying;
-}
-
 void PlayerController::setSprinting(bool sprinting) {
 	m_sprinting = sprinting;
 }
@@ -261,28 +257,12 @@ PlayerController::Fluid PlayerController::currentFluid() const {
 	return Fluid::NONE;
 }
 
-bool PlayerController::isInWater() const {
-	return currentFluid() == Fluid::WATER;
-}
-
 bool PlayerController::isOnGround() const {
 	return m_onTheGround;
 }
 
 bool PlayerController::intersectsBlock(ivec3 blockPos) const {
 	return aabb_check(makeHitbox(), { blockPos, {1, 1, 1} });
-}
-
-vec3 PlayerController::getVelocity() const {
-	return m_lastVelocity;
-}
-
-vec3 PlayerController::getHorizontalDir() const {
-	return m_horizontalDir;
-}
-
-vec3 PlayerController::getVerticalDir() const {
-	return m_verticalDir;
 }
 
 std::vector<ivec3> PlayerController::getBroadphaseBlocks(const Box& hitbox, vec3 shift,

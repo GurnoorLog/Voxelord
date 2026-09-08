@@ -46,8 +46,6 @@ public:
 	// Stops the thread and closes the listener/socket. Safe to call more than once.
 	void stop();
 
-	bool hasClient() const;
-
 	// Main-thread API -------------------------------------------------------
 	// Pulls the next pending request (nullptr when idle). Call repeatedly until it returns nullptr.
 	std::unique_ptr<Command> poll();
@@ -61,8 +59,9 @@ private:
 	std::thread m_thread;
 	std::atomic<bool> m_stop{ false };
 
-	// m_mutex is touched from update() (const, via hasClient) and the worker thread, hence mutable.
-	mutable std::mutex m_mutex;
+	// m_mutex guards the command queue and the client socket, touched from the game
+	// thread (poll/respond) and the worker thread.
+	std::mutex m_mutex;
 	std::deque<std::unique_ptr<Command>> m_commands;
 
 	sf::TcpListener m_listener;

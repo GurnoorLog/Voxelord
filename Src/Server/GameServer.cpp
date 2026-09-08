@@ -6,6 +6,7 @@
 #include "game/BulkEdit.h"
 #include "maths/Converter.h"
 #include "util/Logger.h"
+#include "world/WorldConstants.h"
 
 GameServer::GameServer(uint16_t port) : m_port{ port } {}
 
@@ -216,7 +217,7 @@ void GameServer::handleBlockEdit(Client& client, int x, int y, int z, uint8_t bl
 void GameServer::handleBulkEdit(Client& client, int cx, int cy, int cz, uint16_t radius, uint8_t blockType) {
 	if (client.player == nullptr || !client.welcomeSent)
 		return;
-	if (blockType >= BlockID::SIZE || radius > MAX_BULK_RADIUS)
+	if (blockType >= BlockID::SIZE || radius > Protocol::MAX_BULK_EDIT_RADIUS)
 		return;
 
 	vec3 center{ cx + 0.5f, cy + 0.5f, cz + 0.5f };
@@ -277,7 +278,7 @@ applyInput(*client->player, TICK_TIME);
 		}
 	}
 
-	m_timeOfDay = std::fmod(m_timeOfDay + TICK_TIME / 120.f, 1.f);
+	m_timeOfDay = std::fmod(m_timeOfDay + TICK_TIME / Const::DAY_LENGTH_SECONDS, 1.f);
 
 	broadcastPlayerStates();
 

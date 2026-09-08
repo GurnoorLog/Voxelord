@@ -1,15 +1,6 @@
 #include "Swamp.h"
 
-#include "world/WorldConstants.h"
-
-int Swamp::getHeight(ivec2 pos) const {
-	double noise = perlin.getNoise(static_cast<dvec2>(pos));
-	return Const::SEA_LEVEL + 4 + static_cast<int>(noise * 32);
-}
-
-Block Swamp::getBlock(ivec3 pos, int depth) const {
-	return layeredGround(pos, depth, BlockID::GRASS, BlockID::DIRT);
-}
+Swamp::Swamp() : Biome(Config{ 4, 0.5, 1. / 128, 4, 32, BlockID::GRASS, BlockID::DIRT }) {}
 
 std::vector<StructureInfo> Swamp::getStructures() const {
 	return { { StructureID::OAK, 0.1f }, { StructureID::WILLOW, 0.06f } };

@@ -6,6 +6,7 @@
 #include <maths/SweptAABB.h>
 #include <block/Block.h>
 #include <physics/IWorldView.h>
+#include <world/WorldConstants.h>
 
 
 
@@ -45,19 +46,13 @@ public:
 	float getYaw() const;
 	float getPitch() const;
 	void setFlying(bool flying);
-	bool getFlying() const;
 
 	void setSprinting(bool sprinting);
 	void move(Direction direction, float deltaTime);
 	void update(float deltaTime);
 	vec3 getMoveAndReset(float deltaTime);
-	bool isInWater() const;
 	bool isOnGround() const;
 	bool intersectsBlock(ivec3 blockPos) const;
-	// The velocity produced by the last getVelocityAndReset() call (units per second).
-	vec3 getVelocity() const;
-	vec3 getHorizontalDir() const;
-	vec3 getVerticalDir() const;
 
 private:
 	enum class Fluid { NONE, WATER, LAVA };
@@ -77,7 +72,7 @@ private:
 
 	const IWorldView* m_worldView{ nullptr };
 
-	vec3 m_position{ 0.f, 80.f, 0.f };
+	vec3 m_position{ 0.f, static_cast<float>(Const::SPAWN_Y), 0.f };
 	float m_yaw{ -90.f };
 	float m_pitch{ 0.f };
 	bool m_flying = true;

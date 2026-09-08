@@ -6,7 +6,6 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
-#include <memory>
 #include <atomic>
 #include <utility>
 #include <vector>
@@ -115,7 +114,6 @@ public:
 
 private:
 	void clearRenderTarget();
-	void buildHeldBlockMesh(Block block);
 	// explosive: also play the visual effect if the edit is accepted.
 	void submitSphereEdit(int radius, Block block, bool explosive = false);
 
@@ -156,7 +154,6 @@ private:
 	// Grammar first; fall back to a local ollama model.
 	void askOllama(const std::string& text);
 	void applyOllamaResult();
-	void endBotTask(const std::string& message, bool ok);
 
 	Player m_player;
 

@@ -47,11 +47,6 @@ void McpServer::stop() {
 		m_thread.join();
 }
 
-bool McpServer::hasClient() const {
-	std::lock_guard<std::mutex> lock(m_mutex);
-	return m_client && m_client->getRemoteAddress() != sf::IpAddress::None;
-}
-
 std::unique_ptr<McpServer::Command> McpServer::poll() {
 	std::lock_guard<std::mutex> lock(m_mutex);
 	if (m_commands.empty())

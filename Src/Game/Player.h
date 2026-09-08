@@ -26,11 +26,7 @@ public:
 	void placeBlockBelow();
 	void move(PlayerController::Direction direction, sf::Time dt);
 	void setSprinting(bool sprinting);
-	// Places block at the aimed face; false when nothing is targetable or it's blocked.
-	bool placeBlock(Block block);
 	vec3 getPosition() const;
-	vec3 getVelocity() const;
-	bool isOnGround() const;
 	void toggleFlying();
 	void setFlying(bool flying);
 	bool isFlying() const;
@@ -45,9 +41,6 @@ public:
 	std::optional<ivec3> getPlacePos() const;
 	void cycleBlock(int dir);
 	void selectBlock(int slot);
-	int getHotbarIndex() const;
-	const std::vector<BlockID>& hotbar() const;
-	bool isInWater() const;
 	bool intersectsBlock(ivec3 blockPos) const;
 
 private:

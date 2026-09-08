@@ -18,7 +18,7 @@ struct PlayerEntity {
 	int id = 0;
 	std::string name;
 	PlayerController controller;
-	vec3 position{ 0.f, 80.f, 0.f };
+	vec3 position{ 0.f, static_cast<float>(Const::SPAWN_Y), 0.f };
 	float yaw{ -90.f };
 	float pitch{ 0.f };
 	bool onGround = false;
@@ -34,7 +34,6 @@ public:
 	static constexpr float TICK_TIME = 1.f / TICK_RATE;
 	static constexpr float REACH = 8.f;
 	static constexpr int EDIT_COOLDOWN_MS = 150;
-	static constexpr uint16_t MAX_BULK_RADIUS = 25;
 	static constexpr int WORLD_RADIUS_CHUNKS = 8;
 
 	explicit GameServer(uint16_t port = Protocol::DEFAULT_PORT);
@@ -47,8 +46,6 @@ public:
 	// Blocking server loop: accept, receive, fixed-tick, broadcast. Dedicated binary or host thread.
 	void run();
 
-	bool isRunning() const { return m_started; }
-	int clientCount() const { return static_cast<int>(m_clients.size()); }
 	uint16_t port() const { return m_port; }
 
 private:

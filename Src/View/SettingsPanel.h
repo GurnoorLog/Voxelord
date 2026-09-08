@@ -20,7 +20,6 @@ public:
 	explicit SettingsPanel(Window* window);
 
 	// Screen area of the open panel, used by the main loop for input routing.
-	sf::FloatRect panelBounds() const;
 	bool isOpen() const { return m_open; }
 	void open() { m_open = true; }
 	void close() { m_open = false; }

@@ -1,7 +1,5 @@
 #include "Palm.h"
 
-#include "generator/WorldGenerator.h"
-#include "maths/Dir3D.h"
 #include "maths/Dir2D.h"
 
 Palm::Palm() : Structure({ 9, 7, 9 }) {
@@ -21,7 +19,5 @@ ivec2 Palm::getSupportPos(ivec2 globalPos) const {
 }
 
 bool Palm::isValidPos(ivec3 centerPos, BiomeID biomeID) const {
-	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
-	return centerPos.y >= Const::SEA_LEVEL &&
-		biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id == +BlockID::SAND;
+	return isGroundedOn(centerPos, biomeID, { +BlockID::SAND });
 }

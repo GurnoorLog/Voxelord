@@ -1,18 +1,11 @@
 #include "Willow.h"
 
 #include "TreeShapes.h"
-#include "generator/WorldGenerator.h"
-#include "maths/Dir3D.h"
 
 #include <algorithm>
 #include <cmath>
 
-namespace {
-	constexpr int WIDTH = 17; // wide, drooping crown
-	constexpr int HEIGHT = 18;
-}
-
-Willow::Willow() : Structure({ WIDTH, HEIGHT, WIDTH }) {}
+Willow::Willow() : Structure({ 17, 18, 17 }) {}
 
 DynamicArray3D<Block> Willow::build(uint32_t seed) const {
 	DynamicArray3D<Block> blocks(size());
@@ -65,7 +58,5 @@ DynamicArray3D<Block> Willow::build(uint32_t seed) const {
 }
 
 bool Willow::isValidPos(ivec3 centerPos, BiomeID biomeID) const {
-	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
-	BlockID blockID = biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id;
-	return centerPos.y >= Const::SEA_LEVEL && (blockID == +BlockID::GRASS || blockID == +BlockID::DIRT);
+	return isGroundedOn(centerPos, biomeID, { +BlockID::GRASS, +BlockID::DIRT });
 }

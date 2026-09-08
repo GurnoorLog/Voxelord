@@ -2,12 +2,10 @@
 
 #include <cctype>
 
-#include "util/Logger.h"
+#include "util/Text.h"
 
 MainMenu::MainMenu(Window* window) : p_window{ window } {
-	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
-		LOG(Level::ERROR) << "Failed to load font" << std::endl;
-	}
+	loadGameFont(m_font);
 	m_title.setFont(m_font);
 	m_title.setString("VoxLord");
 	m_title.setFillColor(sf::Color::White);
@@ -79,9 +77,7 @@ void MainMenu::draw() {
 	// Title, sized to the window and centered above the buttons.
 	sf::Vector2f size{ static_cast<float>(p_window->getSize().x), static_cast<float>(p_window->getSize().y) };
 	m_title.setCharacterSize(static_cast<unsigned int>(size.y * 0.12f));
-	const sf::FloatRect titleBounds = m_title.getLocalBounds();
-	m_title.setOrigin({ titleBounds.left + titleBounds.width / 2.f, titleBounds.top + titleBounds.height / 2.f });
-	m_title.setPosition({ size.x / 2.f, size.y * 0.34f });
+	centerTextOn(m_title, { size.x / 2.f, size.y * 0.34f });
 	p_window->draw(m_title);
 
 	for (std::size_t i = 0; i < m_buttons.size(); ++i) {
@@ -107,9 +103,7 @@ void MainMenu::draw() {
 		label.setString(button.label);
 		label.setCharacterSize(static_cast<unsigned int>(button.bounds.height * 0.55f));
 		label.setFillColor(button.enabled ? sf::Color::White : sf::Color{ 110, 110, 120 });
-		const sf::FloatRect textBounds = label.getLocalBounds();
-		label.setOrigin({ textBounds.left + textBounds.width / 2.f, textBounds.top + textBounds.height / 2.f });
-		label.setPosition({ button.bounds.left + button.bounds.width / 2.f,
+		centerTextOn(label, { button.bounds.left + button.bounds.width / 2.f,
 			button.bounds.top + button.bounds.height / 2.f });
 		p_window->draw(label);
 	}

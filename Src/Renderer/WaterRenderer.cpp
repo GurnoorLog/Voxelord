@@ -3,6 +3,7 @@
 #include "game/DayCycle.h"
 #include "resources/ResManager.h"
 #include "util/Logger.h"
+#include "util/RenderTexture.h"
 #include "view/Camera.h"
 #include "world/ChunkMap.h"
 #include "world/Section.h"
@@ -97,18 +98,9 @@ void WaterRenderer::setUnderwater(bool underwater) {
 }
 
 void WaterRenderer::onChangedSize(ivec2 windowSize) {
-	sf::ContextSettings settings;
-	settings.majorVersion = 4;
-	settings.minorVersion = 3;
-	settings.depthBits = 24;
-	settings.stencilBits = 8;
-	settings.antialiasingLevel = 0;
-	if (!simple && !reflectionTexture.create(windowSize.x, windowSize.y, settings)) {
-		LOG(Level::ERROR) << "Could not create reflection texture" << std::endl;
-	}
-	if (!refractionTexture.create(windowSize.x, windowSize.y, settings)) {
-		LOG(Level::ERROR) << "Could not create refraction texture" << std::endl;
-	}
+	if (!simple)
+		createRenderTexture(reflectionTexture, windowSize, "reflection texture");
+	createRenderTexture(refractionTexture, windowSize, "refraction texture");
 	if (!dudvMap.loadFromFile("assets/Textures/Water/dudvMap.png")) {
 		LOG(Level::ERROR) << "Could not create DuDv Map texture" << std::endl;
 	}

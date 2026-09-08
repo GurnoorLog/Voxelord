@@ -4,12 +4,10 @@
 #include <SFML/Graphics.hpp>
 
 #include "game/Game.h"
-#include "util/DebugGL.h"
 #include "view/Window.h"
 #include "view/MainMenu.h"
 #include "util/Logger.h"
 #include "util/FPSCounter.h"
-#include "world/WorldConstants.h"
 #include "view/WindowTextDrawer.h"
 #include "view/CaptureMouse.h"
 #include "view/Crosshair.h"
@@ -50,7 +48,7 @@ int main(int argc, char* argv[]) {
 		if (arg == "--test-move")
 			testMove = true;
 		if (arg == "--mcp") {
-			mcpPort = 8765;
+			mcpPort = Protocol::MCP_PORT;
 			if (i + 1 < argc) {
 				int parsed = std::atoi(argv[i + 1]);
 				if (parsed > 0 && parsed <= 65535) {

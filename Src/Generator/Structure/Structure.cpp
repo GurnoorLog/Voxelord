@@ -2,11 +2,27 @@
 
 #include "maths/Converter.h"
 #include "maths/Dir2D.h"
+#include "maths/Dir3D.h"
+#include "generator/Biome/Biome.h"
+#include "generator/WorldGenerator.h"
+#include "world/WorldConstants.h"
 
 Structure::Structure(ivec3 size) : m_blocks{ size } {}
 
 ivec2 Structure::getSupportPos(ivec2 globalPos) const {
 	return getCenterPos(globalPos);
+}
+
+bool Structure::isGroundedOn(ivec3 centerPos, BiomeID biomeID,
+		std::initializer_list<BlockID> ground) const {
+	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
+	BlockID below = biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id;
+	if (centerPos.y < Const::SEA_LEVEL)
+		return false;
+	for (BlockID candidate : ground)
+		if (below == +candidate)
+			return true;
+	return false;
 }
 
 DynamicArray3D<Block> Structure::build(uint32_t) const {

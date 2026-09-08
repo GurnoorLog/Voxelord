@@ -3,13 +3,11 @@
 #include <iomanip>
 
 #include "generator/WorldGenerator.h"
-#include "util/Logger.h"
 #include "maths/Converter.h"
+#include "util/Text.h"
 
 WindowTextDrawer::WindowTextDrawer(Window * window) : p_window{ window } {
-	if (!m_font.loadFromFile("assets/Fonts/Minecraft.ttf")) {
-		LOG(Level::ERROR) << "Failed to load font" << std::endl;
-	}
+	loadGameFont(m_font);
 }
 
 void WindowTextDrawer::drawAll(int fps, Game& game) {

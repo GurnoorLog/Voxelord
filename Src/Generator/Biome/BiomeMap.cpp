@@ -24,7 +24,6 @@
 #include "generator/Structure/Palm.h"
 #include "generator/Structure/DeadTree.h"
 #include "generator/Structure/Cactus.h"
-#include "util/Logger.h"
 
 BiomeMap::BiomeMap() {
 	addBiome(std::make_unique<ExtremeMountains>(), BiomeID::EXTREME_MOUNTAINS, "Extreme mountains");

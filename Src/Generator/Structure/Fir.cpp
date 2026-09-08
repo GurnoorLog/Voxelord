@@ -1,8 +1,5 @@
 #include "Fir.h"
 
-#include "generator/WorldGenerator.h"
-#include "maths/Dir3D.h"
-
 Fir::Fir() : Structure({ 5, 7, 5 }) {
 	ivec2 center = getCenterPos();
 	add({ center.x, 6, center.y }, +BlockID::DARK_LEAVES);
@@ -14,7 +11,5 @@ Fir::Fir() : Structure({ 5, 7, 5 }) {
 }
 
 bool Fir::isValidPos(ivec3 centerPos, BiomeID biomeID) const {
-	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
-	return centerPos.y >= Const::SEA_LEVEL &&
-		biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id == +BlockID::SNOW;
+	return isGroundedOn(centerPos, biomeID, { +BlockID::SNOW });
 }

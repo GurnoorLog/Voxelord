@@ -4,6 +4,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "physics/PlayerController.h"
+
 namespace {
 	// A unit cube centered on the origin, laid out as 4 vertices per face (24 total) so the
 	// shared corner vertices keep per-face UV-free flat coloring trivial.
@@ -76,10 +78,11 @@ void RemotePlayerDrawer::render(const std::vector<RemotePlayerVisual>& players, 
 	const GLboolean depthWasEnabled = glIsEnabled(GL_DEPTH_TEST);
 	glEnable(GL_DEPTH_TEST);
 
-	// Body: 0.6 x 1.2 x 0.6, feet on the ground. Head: 0.5 cube resting on top.
-	constexpr float EYE_HEIGHT = 1.62f;
-	constexpr float BODY_BOTTOM = EYE_HEIGHT - 1.32f; // body spans [feet, feet + 1.2]
-	constexpr float HEAD_BOTTOM = EYE_HEIGHT - 0.42f;
+	// Body: 0.6 x 1.2 x 0.6, feet on the ground. Head: 0.5 cube resting on top. Eyes sit at the
+	// same height as the physics camera so remote players align with where the local player looks from.
+	const float EYE_HEIGHT = PlayerController::PLAYER_HEAD_HEIGHT;
+	const float BODY_BOTTOM = EYE_HEIGHT - 1.32f; // body spans [feet, feet + 1.2]
+	const float HEAD_BOTTOM = EYE_HEIGHT - 0.42f;
 
 	for (const RemotePlayerVisual& player : players) {
 		vec3 feet = player.eyePosition - vec3(0.f, EYE_HEIGHT, 0.f);

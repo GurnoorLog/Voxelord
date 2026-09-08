@@ -1,15 +1,9 @@
 #include "Mountains.h"
 
 #include "world/WorldConstants.h"
-#include "util/Logger.h"
-#include "maths/Converter.h"
 
 int Mountains::getHeight(ivec2 pos) const {
-	dvec2 p = static_cast<dvec2>(pos);
-	// Warp the lookup so ridges meander instead of looking grid-aligned
-	dvec2 offset{ warp.getNoise(p), warp.getNoise(p + 137.5) };
-	double ridge = perlin.getRidgedNoise(p + offset * 60.);
-	return Const::SEA_LEVEL + 24 + static_cast<int>(ridge * 72);
+	return ridgedHeight(pos, warp, perlin, 60., 24, 72);
 }
 
 Block Mountains::getBlock(ivec3 pos, int depth) const {

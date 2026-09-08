@@ -1,18 +1,11 @@
 #include "Cherry.h"
 
 #include "TreeShapes.h"
-#include "generator/WorldGenerator.h"
-#include "maths/Dir3D.h"
 
 #include <algorithm>
 #include <cmath>
 
-namespace {
-	constexpr int WIDTH = 17;
-	constexpr int HEIGHT = 18;
-}
-
-Cherry::Cherry() : Structure({ WIDTH, HEIGHT, WIDTH }) {}
+Cherry::Cherry() : Structure({ 17, 18, 17 }) {}
 
 DynamicArray3D<Block> Cherry::build(uint32_t seed) const {
 	DynamicArray3D<Block> blocks(size());
@@ -57,7 +50,5 @@ DynamicArray3D<Block> Cherry::build(uint32_t seed) const {
 }
 
 bool Cherry::isValidPos(ivec3 centerPos, BiomeID biomeID) const {
-	const Biome& biome = g_worldGenerator.biomeMap().getBiome(biomeID);
-	BlockID blockID = biome.getBlock(centerPos + Dir3D::to_ivec3(Dir3D::DOWN), 0).id;
-	return centerPos.y >= Const::SEA_LEVEL && (blockID == +BlockID::GRASS || blockID == +BlockID::DIRT);
+	return isGroundedOn(centerPos, biomeID, { +BlockID::GRASS, +BlockID::DIRT });
 }

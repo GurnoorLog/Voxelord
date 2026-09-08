@@ -1,11 +1,14 @@
+#pragma once
+
 #include "maths/GlmCommon.h"
 #include "maths/Converter.h"
 #include "view/Window.h"
+#include "world/WorldConstants.h"
 
 class DayCycle {
 public:
     void update(sf::Time dt) {
-        m_timeOfDay = std::fmod(m_timeOfDay + dt.asSeconds() / DAY_LENGTH_SECONDS, 1.f);
+        m_timeOfDay = std::fmod(m_timeOfDay + dt.asSeconds() / Const::DAY_LENGTH_SECONDS, 1.f);
         refresh();
     }
     void setTimeOfDay(float t) {
@@ -17,7 +20,6 @@ public:
     vec3 getSkyColor() const { return m_skyColor; }
 
 private:
-	static constexpr float DAY_LENGTH_SECONDS = 120.f;
 	static constexpr float NIGHT_FRACTION = 0.3f;
 	static constexpr float NIGHT_LIGHT = 0.12f;
 	static constexpr float NIGHT_SKY = 0.08f;

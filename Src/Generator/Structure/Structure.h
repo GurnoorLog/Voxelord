@@ -1,13 +1,14 @@
 #pragma once
 
+#include <cstdint>
+#include <initializer_list>
+#include <optional>
+
 #include "util/DynamicArray3D.h"
 #include "block/Block.h"
 #include "generator/Biome/BiomeID.h"
 
 #include "maths/GlmCommon.h"
-
-#include <cstdint>
-#include <optional>
 
 class Structure {
 public:
@@ -25,6 +26,11 @@ public:
 	ivec2 getCenterPos(ivec2 globalPos = ivec2{ 0, 0 }) const;
 
 protected:
+	// Ground rule shared by every structure: it only stands at or above sea level, on one of the
+	// given ground blocks (trees on GRASS/DIRT, palm/desert plants on SAND, firs on SNOW).
+	bool isGroundedOn(ivec3 centerPos, BiomeID biomeID,
+		std::initializer_list<BlockID> ground) const;
+
 	DynamicArray3D<Block> m_blocks;
 
 	void add(ivec3 pos, Block block);

@@ -5,7 +5,6 @@
 #include "maths/Converter.h"
 #include "maths/LineBlockFinder.h"
 #include "server/GameServer.h"
-#include "util/DebugGL.h"
 #include "util/Logger.h"
 #include "world/WorldConstants.h"
 
@@ -18,6 +17,9 @@
 #include "block/BlockID.h"
 
 namespace {
+	// Client polls its input at the server tick rate so a snapshot exists whenever the server ticks.
+	constexpr int INPUT_PERIOD_MS = static_cast<int>(1000.f / GameServer::TICK_RATE);
+
 	vec3 playerColor(int id) {
 		static const std::vector<vec3> palette{
 			{ 0.90f, 0.30f, 0.30f }, { 0.30f, 0.80f, 0.30f }, { 0.30f, 0.55f, 0.90f },
@@ -25,6 +27,27 @@ namespace {
 			{ 0.90f, 0.60f, 0.30f }, { 0.60f, 0.90f, 0.30f }
 		};
 		return palette[static_cast<std::size_t>(id) % palette.size()];
+	}
+
+	// Unit look vector for a yaw/pitch pair, matching the player camera's conventions.
+	vec3 lookVector(float yaw, float pitch) {
+		return {
+			cos(glm::radians(yaw)) * cos(glm::radians(pitch)),
+			sin(glm::radians(pitch)),
+			sin(glm::radians(yaw)) * cos(glm::radians(pitch))
+		};
+	}
+
+	// Ray from the bot's eye toward where it looks; returns the first solid block within reach.
+	std::optional<ivec3> botTarget(const ChunkMap& chunkMap, vec3 eye, float yaw, float pitch) {
+		LineBlockFinder finder{ eye, lookVector(yaw, pitch) };
+		while (finder.getDistance() <= GameServer::REACH) {
+			ivec3 pos = finder.next();
+			Block block = chunkMap.getBlock(pos);
+			if (ResManager::blockDatas().get(block.id).isObstacle())
+				return pos;
+		}
+		return std::nullopt;
 	}
 }
 
@@ -501,7 +524,7 @@ void Game::sendInput() {
 	if (!m_online)
 		return;
 	// 30 Hz to match the server tick.
-	if (m_lastInputClock.getElapsedTime().asMilliseconds() < 33)
+	if (m_lastInputClock.getElapsedTime().asMilliseconds() < INPUT_PERIOD_MS)
 		return;
 	m_lastInputClock.restart();
 	Protocol::PlayerInput input;
@@ -687,7 +710,7 @@ void Game::sendMcpInput() {
 	if (!m_mcpBotOnline)
 		return;
 	// 30 Hz to match the server tick.
-	if (m_mcpBotInputClock.getElapsedTime().asMilliseconds() < 33)
+	if (m_mcpBotInputClock.getElapsedTime().asMilliseconds() < INPUT_PERIOD_MS)
 		return;
 	m_mcpBotInputClock.restart();
 	Protocol::PlayerInput input;
@@ -700,32 +723,20 @@ void Game::sendMcpInput() {
 }
 
 std::optional<ivec3> Game::mcpBotTarget() const {
-	// Aiming ray from the bot's eye toward where it looks; returns the first solid block within reach.
-	vec3 front{
-		cos(glm::radians(m_mcpBotYaw)) * cos(glm::radians(m_mcpBotPitch)),
-		sin(glm::radians(m_mcpBotPitch)),
-		sin(glm::radians(m_mcpBotYaw)) * cos(glm::radians(m_mcpBotPitch))
-	};
-	LineBlockFinder finder{ m_mcpBotPos + vec3(0.f, PlayerController::PLAYER_HEAD_HEIGHT, 0.f), front };
-	while (finder.getDistance() <= GameServer::REACH) {
-		ivec3 pos = finder.next();
-		Block block = m_chunkMap.getBlock(pos);
-		if (ResManager::blockDatas().get(block.id).isObstacle())
-			return pos;
-	}
-	return std::nullopt;
+	return botTarget(m_chunkMap, m_mcpBotPos + vec3(0.f, PlayerController::PLAYER_HEAD_HEIGHT, 0.f),
+		m_mcpBotYaw, m_mcpBotPitch);
 }
 
 std::optional<ivec3> Game::mcpBotPlace() const {
 	// The first air block in front of the aimed-at face (the cell the bot would place against).
-	if (!mcpBotTarget().has_value())
+	std::optional<ivec3> target = botTarget(m_chunkMap,
+		m_mcpBotPos + vec3(0.f, PlayerController::PLAYER_HEAD_HEIGHT, 0.f),
+		m_mcpBotYaw, m_mcpBotPitch);
+	if (!target.has_value())
 		return std::nullopt;
-	vec3 front{
-		cos(glm::radians(m_mcpBotYaw)) * cos(glm::radians(m_mcpBotPitch)),
-		sin(glm::radians(m_mcpBotPitch)),
-		sin(glm::radians(m_mcpBotYaw)) * cos(glm::radians(m_mcpBotPitch))
-	};
-	LineBlockFinder finder{ m_mcpBotPos + vec3(0.f, PlayerController::PLAYER_HEAD_HEIGHT, 0.f), front };
+	// Step the same ray again; the bot places into the first air cell before the obstacle.
+	LineBlockFinder finder{ m_mcpBotPos + vec3(0.f, PlayerController::PLAYER_HEAD_HEIGHT, 0.f),
+		lookVector(m_mcpBotYaw, m_mcpBotPitch) };
 	while (finder.getDistance() <= GameServer::REACH) {
 		ivec3 pos = finder.next();
 		Block block = m_chunkMap.getBlock(pos);
@@ -1547,11 +1558,3 @@ void Game::applyOllamaResult() {
 		addChatLine(m_mcpBotName, "I couldn't understand that.");
 	}
 }
-
-void Game::endBotTask(const std::string& message, bool ok) {
-	m_botTaskActive = false;
-	m_botTask.kind = BotTaskKind::NONE;
-	addChatLine(m_mcpBotName, ok ? message : "Stopped: " + message);
-}
-
-

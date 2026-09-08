@@ -93,7 +93,7 @@ vec3 ServerWorld::findSpawn() {
 			if (auto s = tryColumn(r, i)) return *s;
 		}
 	}
-	return { 0.5f, 100.f, 0.5f };
+	return { 0.5f, static_cast<float>(Const::SPAWN_Y), 0.5f };
 }
 
 int ServerWorld::generatedChunks() const {

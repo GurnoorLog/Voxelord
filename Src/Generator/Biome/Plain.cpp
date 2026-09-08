@@ -1,16 +1,6 @@
 #include "Plain.h"
 
-#include "world/WorldConstants.h"
-#include "util/Logger.h"
-
-int Plain::getHeight(ivec2 pos) const {
-	double noise = perlin.getNoise(static_cast<dvec2>(pos));
-	return Const::SEA_LEVEL + 4 + static_cast<int>(noise * 4);
-}
-
-Block Plain::getBlock(ivec3 pos, int depth) const {
-	return layeredGround(pos, depth, BlockID::GRASS, BlockID::DIRT);
-}
+Plain::Plain() : Biome(Config{ 2, 0.5, 1. / 128, 4, 4, BlockID::GRASS, BlockID::DIRT }) {}
 
 std::vector<StructureInfo> Plain::getStructures() const {
 	return { { StructureID::OAK, 0.001f }, { StructureID::BIG_OAK, 0.004f },

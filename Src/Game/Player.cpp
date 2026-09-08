@@ -6,7 +6,7 @@
 #include <maths/LineBlockFinder.h>
 #include <world/ChunkWorldView.h>
 
-const vec3 Player::INITIAL_POSITION{ vec3{ 0.f, 80.f, 0.f } };
+const vec3 Player::INITIAL_POSITION{ vec3{ 0.f, static_cast<float>(Const::SPAWN_Y), 0.f } };
 const float Player::DEFAULT_TARGET_DISTANCE{ static_cast<float>(ChunkMap::VIEW_DISTANCE * Const::SECTION_SIDE) };
 const sf::Time Player::REPEAT_DELAY{ sf::seconds(0.2f) };
 
@@ -125,25 +125,8 @@ void Player::setSprinting(bool sprinting) {
 	m_controller.setSprinting(sprinting);
 }
 
-bool Player::placeBlock(Block block) {
-	if (!placePos.has_value())
-		return false;
-	if (intersectsBlock(placePos.value()))
-		return false;
-	game->setBlockNetwork(placePos.value(), block);
-	return true;
-}
-
 vec3 Player::getPosition() const {
 	return m_camera.getPosition();
-}
-
-vec3 Player::getVelocity() const {
-	return m_controller.getVelocity();
-}
-
-bool Player::isOnGround() const {
-	return m_controller.isOnGround();
 }
 
 void Player::toggleFlying() {
@@ -196,20 +179,8 @@ void Player::selectBlock(int slot) {
 	pickedBlock = slots[static_cast<size_t>(m_hotbarIndex)];
 }
 
-int Player::getHotbarIndex() const {
-	return m_hotbarIndex;
-}
-
-const std::vector<BlockID>& Player::hotbar() const {
-	return g_hotbar();
-}
-
 std::optional<ivec3> Player::getPlacePos() const {
 	return placePos;
-}
-
-bool Player::isInWater() const {
-	return m_controller.isInWater();
 }
 
 bool Player::intersectsBlock(ivec3 blockPos) const {

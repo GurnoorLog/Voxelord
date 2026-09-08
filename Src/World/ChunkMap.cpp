@@ -2,7 +2,6 @@
 
 #include "LightEngine.h"
 #include "resources/ResManager.h"
-#include "util/DebugGL.h"
 #include "maths/Dir2D.h"
 #include "maths/Dir3D.h"
 #include "util/Array3D.h"

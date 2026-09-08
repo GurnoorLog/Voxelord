@@ -1,16 +1,6 @@
 #include "Forest.h"
 
-#include "world/WorldConstants.h"
-#include "util/Logger.h"
-
-int Forest::getHeight(ivec2 pos) const {
-	double noise = perlin.getNoise(static_cast<dvec2>(pos));
-	return Const::SEA_LEVEL + 8 + static_cast<int>(noise * 12);
-}
-
-Block Forest::getBlock(ivec3 pos, int depth) const {
-	return layeredGround(pos, depth, BlockID::GRASS, BlockID::DIRT);
-}
+Forest::Forest() : Biome(Config{ 4, 0.5, 1. / 128, 8, 12, BlockID::GRASS, BlockID::DIRT }) {}
 
 std::vector<StructureInfo> Forest::getStructures() const {
 	return {
